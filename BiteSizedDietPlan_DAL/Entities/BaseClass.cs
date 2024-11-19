@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace BiteSizedDietPlan_DAL.Entities
 {
-    public class User : BaseClass
+    public class BaseClass
     {
-        public string Email { get; set; }
-        public string Password { get; set; }
+        public int Id { get; set; }
+        public DateTime CreatedDate { get; set; } = DateTime.Now;
     }
 }
