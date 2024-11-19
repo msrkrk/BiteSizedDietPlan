@@ -17,12 +17,14 @@ namespace BiteSizedDietPlan_BLL.ConcreteServices
         private readonly IGenericRepository<User> _genericRepository;
         private readonly IMapper _mapper;
         private readonly IUserRepository<User> _userRepository;
+       
 
         public UserService(IGenericRepository<User> genericRepository, IMapper mapper, IUserRepository<User> userRepository)
         {
             _genericRepository = genericRepository;
             _mapper = mapper;
             _userRepository = userRepository;
+           
         }
 
         public UserDto GetUserByEmail(string email)
@@ -42,6 +44,7 @@ namespace BiteSizedDietPlan_BLL.ConcreteServices
 
         public LoginUserDto Login(string email, string password)
         {
+
             var user = _genericRepository.GetAll().FirstOrDefault(x => x.Email == email && x.Password == password);
 
             if (user != null)

@@ -8,12 +8,14 @@ namespace BiteSizedDietPlan
     {
         private readonly IUserService _userService;
         private readonly IMapper _mapper;
+        private readonly IHashService _hashService;
 
-        public LoginForm(IUserService userService, IMapper mapper)
+        public LoginForm(IUserService userService, IMapper mapper,IHashService hashService)
         {
             InitializeComponent();
             _userService = userService;
             _mapper = mapper;
+            _hashService = hashService;
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -23,7 +25,7 @@ namespace BiteSizedDietPlan
                 var loggedInUser = new LoginUserViewModel()
                 {
                     Email = txtEmail.Text,
-                    Password = txtPassword.Text,
+                    Password = _hashService.GetHashCode(txtPassword.Text),
                 };
 
                 var user = _userService.Login(loggedInUser.Email, loggedInUser.Password);
@@ -45,7 +47,7 @@ namespace BiteSizedDietPlan
 
         private void lblRegister_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Form form = new RegisterForm(_userService, _mapper);
+            Form form = new RegisterForm(_userService, _mapper, _hashService);
             this.Hide();
             form.ShowDialog();
         }

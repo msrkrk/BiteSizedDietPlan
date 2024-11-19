@@ -19,28 +19,31 @@ namespace BiteSizedDietPlan
     {
         private readonly IUserService _userService;
         private readonly IMapper _mapper;
-        public RegisterForm(IUserService userService, IMapper mapper)
+        private readonly IHashService _hashService;
+
+        public RegisterForm(IUserService userService, IMapper mapper,IHashService hashService)
         {
             InitializeComponent();
             _userService = userService;
             _mapper = mapper;
+            _hashService = hashService;
         }
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
-
+  
             var user = new RegisterUserViewModel();
 
             if (_userService.GetUserByEmail(txtEmail.Text) == null)
             {
                 user.Email = txtEmail.Text;
-                user.Password = txtPassword.Text;
+                user.Password = _hashService.GetHashCode(txtPassword.Text);
 
 
                 _userService.Register(_mapper.Map<RegisterUserDto>(user));
                 MessageBox.Show("Kayıt işlemi başarı ile gerçekleştirilmiştir, aramıza Hoşgeldiniz.");
 
-                Form loginForm = new LoginForm(_userService, _mapper);
+                Form loginForm = new LoginForm(_userService, _mapper, _hashService);
                 this.Hide();
                 loginForm.ShowDialog();
             }
