@@ -51,6 +51,7 @@
             btnLogin.TabIndex = 0;
             btnLogin.Text = "GİRİŞ YAP";
             btnLogin.UseVisualStyleBackColor = false;
+            btnLogin.Click += btnLogin_Click;
             // 
             // label1
             // 

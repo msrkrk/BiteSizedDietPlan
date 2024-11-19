@@ -17,8 +17,6 @@
   <ItemGroup>
     <Folder Include="AbstractServices\" />
     <Folder Include="ConcreteServices\" />
-    <Folder Include="Dtos\" />
-    <Folder Include="MappingProfile\" />
   </ItemGroup>
 
 </Project>

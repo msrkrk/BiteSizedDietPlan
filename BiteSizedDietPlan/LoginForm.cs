@@ -7,6 +7,9 @@ namespace BiteSizedDietPlan
             InitializeComponent();
         }
 
-        
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            var loggedInUser = new 
+        }
     }
 }
