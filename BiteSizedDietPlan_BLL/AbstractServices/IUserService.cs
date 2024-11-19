@@ -9,7 +9,10 @@ namespace BiteSizedDietPlan_BLL.AbstractServices
 {
     public interface IUserService
     {
-        UserDto Login(string email, string password);
+        LoginUserDto Login(string email, string password);
 
+        void Register(RegisterUserDto registerUserDto);
+
+        UserDto GetUserByEmail(string email);
     }
 }

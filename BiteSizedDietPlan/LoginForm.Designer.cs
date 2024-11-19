@@ -75,6 +75,7 @@
             lblRegister.TabIndex = 2;
             lblRegister.TabStop = true;
             lblRegister.Text = "Şimdi Kayıt Olun!";
+            lblRegister.LinkClicked += lblRegister_LinkClicked;
             // 
             // txtEmail
             // 

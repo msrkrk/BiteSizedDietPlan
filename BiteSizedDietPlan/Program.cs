@@ -29,8 +29,9 @@ namespace BiteSizedDietPlan
             IMapper mapper = new Mapper(mapperConfig);
 
             var context = new AppDbContext();
-            var userRepository = new GenericRepository<User>(context);
-            var userService = new UserService(userRepository, mapper);
+            var userGenericRepository = new GenericRepository<User>(context);
+            var userRepository = new UserRepository<User>(context); 
+            var userService = new UserService(userGenericRepository, mapper,userRepository);
             Application.Run(new LoginForm(userService, mapper));
         }
     }

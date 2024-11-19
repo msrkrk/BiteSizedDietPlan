@@ -42,5 +42,12 @@ namespace BiteSizedDietPlan
 
 
         }
+
+        private void lblRegister_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Form form = new RegisterForm(_userService, _mapper);
+            this.Hide();
+            form.ShowDialog();
+        }
     }
 }

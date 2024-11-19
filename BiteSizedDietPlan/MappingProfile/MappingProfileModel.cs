@@ -15,6 +15,7 @@ namespace BiteSizedDietPlan.MappingProfile
         {
             CreateMap<UserViewModel, UserDto>().ReverseMap();
             CreateMap<LoginUserViewModel, LoginUserDto>().ReverseMap();
+            CreateMap<RegisterUserViewModel, RegisterUserDto>().ReverseMap();
         }
     }
 }
