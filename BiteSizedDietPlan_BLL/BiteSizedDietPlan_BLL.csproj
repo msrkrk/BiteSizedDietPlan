@@ -14,9 +14,4 @@
     <ProjectReference Include="..\BiteSizedDietPlan_DAL\BiteSizedDietPlan_DAL.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="AbstractServices\" />
-    <Folder Include="ConcreteServices\" />
-  </ItemGroup>
-
 </Project>
