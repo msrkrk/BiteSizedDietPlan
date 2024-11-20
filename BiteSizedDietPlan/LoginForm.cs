@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
+using BiteSizedDietPlan;
 using BiteSizedDietPlan.Models.UserViewModels;
 using BiteSizedDietPlan_BLL.AbstractServices;
+using BiteSizedDietPlan_BLL.ConcreteServices;
 
 namespace BiteSizedDietPlan
 {
@@ -22,28 +24,33 @@ namespace BiteSizedDietPlan
         {
             try
             {
-                var loggedInUser = new LoginUserViewModel()
-                {
-                    Email = txtEmail.Text,
-                    Password = _hashService.GetHashCode(txtPassword.Text),
-                };
+                string email = txtEmail.Text.Trim();
+            string password = txtPassword.Text.Trim();
 
-                var user = _userService.Login(loggedInUser.Email, loggedInUser.Password);
-                MessageBox.Show("Hoşgeldiniz.");
-
-                Form homePage = new HomePageForm();
-                this.Hide();
-                homePage.ShowDialog();
-
+            if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password))
+            {
+                MessageBox.Show("Email ve parola alanları boş bırakılamaz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            string hashedPassword = _hashService.GetHashCode(password);
+            var user = _userService.Login(email, hashedPassword);
+            if (user == null)
+            {
+                MessageBox.Show("Giriş yaptığınız email veya parolaya ait kullanıcı bulunmuyor, lütfen tekrar deneyiniz.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            MessageBox.Show("Hoşgeldiniz.");
+            Form homePage = new HomePageForm();
+            this.Hide();
+            homePage.ShowDialog();
 
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Hata Oluştu! " + ex.Message);
+                MessageBox.Show("Hata Oluştu! " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-
         }
+
 
         private void lblRegister_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
@@ -53,3 +60,7 @@ namespace BiteSizedDietPlan
         }
     }
 }
+
+
+
+
