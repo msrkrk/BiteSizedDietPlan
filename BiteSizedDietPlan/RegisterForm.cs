@@ -99,5 +99,16 @@ namespace BiteSizedDietPlan
             return containUpperCase && containSpecialCharacter && isLengthValid;
         }
 
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            Form loginForm = new LoginForm(_userService, _mapper, _hashService);
+            this.Hide();
+            loginForm.ShowDialog();
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

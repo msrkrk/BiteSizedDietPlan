@@ -153,6 +153,16 @@ namespace BiteSizedDietPlan.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap kırmızı {
+            get {
+                object obj = ResourceManager.GetObject("kırmızı", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap VTg_sWn3oukIbHhnZvi6NTsZU3D76DnPjyNJSnhAVGI {
             get {
                 object obj = ResourceManager.GetObject("VTg-sWn3oukIbHhnZvi6NTsZU3D76DnPjyNJSnhAVGI", resourceCulture);
