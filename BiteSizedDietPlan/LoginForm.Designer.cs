@@ -49,7 +49,7 @@
             btnLogin.Location = new Point(361, 509);
             btnLogin.Name = "btnLogin";
             btnLogin.Size = new Size(101, 28);
-            btnLogin.TabIndex = 0;
+            btnLogin.TabIndex = 4;
             btnLogin.Text = "GİRİŞ YAP";
             btnLogin.UseVisualStyleBackColor = false;
             btnLogin.Click += btnLogin_Click;
@@ -73,7 +73,7 @@
             lblRegister.Location = new Point(354, 548);
             lblRegister.Name = "lblRegister";
             lblRegister.Size = new Size(116, 18);
-            lblRegister.TabIndex = 2;
+            lblRegister.TabIndex = 5;
             lblRegister.TabStop = true;
             lblRegister.Text = "Şimdi Kayıt Olun!";
             lblRegister.LinkClicked += lblRegister_LinkClicked;
@@ -85,7 +85,7 @@
             txtEmail.Location = new Point(316, 396);
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(197, 26);
-            txtEmail.TabIndex = 3;
+            txtEmail.TabIndex = 1;
             // 
             // txtPassword
             // 
@@ -93,7 +93,7 @@
             txtPassword.Location = new Point(316, 467);
             txtPassword.Name = "txtPassword";
             txtPassword.Size = new Size(197, 26);
-            txtPassword.TabIndex = 5;
+            txtPassword.TabIndex = 2;
             // 
             // label2
             // 
@@ -137,7 +137,7 @@
             chkShowPassword.Location = new Point(519, 474);
             chkShowPassword.Name = "chkShowPassword";
             chkShowPassword.Size = new Size(58, 17);
-            chkShowPassword.TabIndex = 8;
+            chkShowPassword.TabIndex = 3;
             chkShowPassword.Text = "Göster";
             chkShowPassword.UseVisualStyleBackColor = false;
             chkShowPassword.CheckedChanged += chkShowPassword_CheckedChanged;
@@ -158,7 +158,7 @@
             Controls.Add(lblRegister);
             Controls.Add(label1);
             Controls.Add(btnLogin);
-            FormBorderStyle = FormBorderStyle.FixedDialog;
+            FormBorderStyle = FormBorderStyle.None;
             Name = "LoginForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "LoginForm";

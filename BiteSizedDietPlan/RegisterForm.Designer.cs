@@ -42,7 +42,7 @@
             txtEmail.Location = new Point(214, 135);
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(170, 26);
-            txtEmail.TabIndex = 0;
+            txtEmail.TabIndex = 1;
             // 
             // lblEmail
             // 
@@ -63,7 +63,7 @@
             btnRegister.Location = new Point(214, 252);
             btnRegister.Name = "btnRegister";
             btnRegister.Size = new Size(170, 27);
-            btnRegister.TabIndex = 2;
+            btnRegister.TabIndex = 4;
             btnRegister.Text = "ŞİMDİ KAYIT OL!";
             btnRegister.UseVisualStyleBackColor = true;
             btnRegister.Click += btnRegister_Click;
@@ -85,7 +85,7 @@
             txtPassword.Location = new Point(214, 206);
             txtPassword.Name = "txtPassword";
             txtPassword.Size = new Size(170, 26);
-            txtPassword.TabIndex = 3;
+            txtPassword.TabIndex = 2;
             // 
             // chkShowPassword
             // 
@@ -94,7 +94,7 @@
             chkShowPassword.Location = new Point(390, 213);
             chkShowPassword.Name = "chkShowPassword";
             chkShowPassword.Size = new Size(60, 19);
-            chkShowPassword.TabIndex = 5;
+            chkShowPassword.TabIndex = 3;
             chkShowPassword.Text = "Göster";
             chkShowPassword.UseVisualStyleBackColor = false;
             chkShowPassword.CheckedChanged += chkShowPassword_CheckedChanged;
@@ -112,7 +112,7 @@
             Controls.Add(btnRegister);
             Controls.Add(lblEmail);
             Controls.Add(txtEmail);
-            FormBorderStyle = FormBorderStyle.FixedDialog;
+            FormBorderStyle = FormBorderStyle.None;
             Name = "RegisterForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "RegisterForm";
