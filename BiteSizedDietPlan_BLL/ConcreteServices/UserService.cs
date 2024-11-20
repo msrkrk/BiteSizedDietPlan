@@ -44,25 +44,14 @@ namespace BiteSizedDietPlan_BLL.ConcreteServices
 
         public LoginUserDto Login(string email, string password)
         {
-
             var user = _genericRepository.GetAll().FirstOrDefault(x => x.Email == email && x.Password == password);
 
-            if (user != null)
-            {
-                return _mapper.Map<LoginUserDto>(user);
-            }
-            else
-            {
-                return null;
-
-            }
+            return _mapper.Map<LoginUserDto>(user);
         }
 
         public void Register(RegisterUserDto RegisterUserDto)
         {
-
             _genericRepository.Add(_mapper.Map<User>(RegisterUserDto));
-
         }
 
 

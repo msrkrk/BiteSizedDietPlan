@@ -12,7 +12,7 @@ namespace BiteSizedDietPlan
         private readonly IMapper _mapper;
         private readonly IHashService _hashService;
 
-        public LoginForm(IUserService userService, IMapper mapper,IHashService hashService)
+        public LoginForm(IUserService userService, IMapper mapper, IHashService hashService)
         {
             InitializeComponent();
             _userService = userService;
@@ -25,24 +25,25 @@ namespace BiteSizedDietPlan
             try
             {
                 string email = txtEmail.Text.Trim();
-            string password = txtPassword.Text.Trim();
+                string password = txtPassword.Text.Trim();
 
-            if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password))
-            {
-                MessageBox.Show("Email ve parola alanları boş bırakılamaz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            string hashedPassword = _hashService.GetHashCode(password);
-            var user = _userService.Login(email, hashedPassword);
-            if (user == null)
-            {
-                MessageBox.Show("Giriş yaptığınız email veya parolaya ait kullanıcı bulunmuyor, lütfen tekrar deneyiniz.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            MessageBox.Show("Hoşgeldiniz.");
-            Form homePage = new HomePageForm();
-            this.Hide();
-            homePage.ShowDialog();
+
+                if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password))
+                {
+                    MessageBox.Show("Email ve parola alanları boş bırakılamaz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                string hashedPassword = _hashService.GetHashCode(password);
+                var user = _userService.Login(email, hashedPassword);
+                if (user == null)
+                {
+                    MessageBox.Show("Giriş yaptığınız email veya parolaya ait kullanıcı bulunmuyor, lütfen tekrar deneyiniz.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                MessageBox.Show("Hoşgeldiniz.");
+                Form homePage = new HomePageForm();
+                this.Hide();
+                homePage.ShowDialog();
 
             }
             catch (Exception ex)
@@ -57,6 +58,23 @@ namespace BiteSizedDietPlan
             Form form = new RegisterForm(_userService, _mapper, _hashService);
             this.Hide();
             form.ShowDialog();
+        }
+
+        private void LoginForm_Load(object sender, EventArgs e)
+        {
+            txtPassword.PasswordChar = '*';
+        }
+
+        private void chkShowPassword_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkShowPassword.Checked)
+            {
+                txtPassword.PasswordChar = '\0';
+            }
+            else
+            {
+                txtPassword.PasswordChar = '*';
+            }
         }
     }
 }

@@ -37,6 +37,7 @@
             label2 = new Label();
             label3 = new Label();
             label4 = new Label();
+            chkShowPassword = new CheckBox();
             SuspendLayout();
             // 
             // btnLogin
@@ -45,7 +46,7 @@
             btnLogin.BackgroundImage = Properties.Resources.VTg_sWn3oukIbHhnZvi6NTsZU3D76DnPjyNJSnhAVGI__1_;
             btnLogin.FlatStyle = FlatStyle.Popup;
             btnLogin.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnLogin.Location = new Point(391, 518);
+            btnLogin.Location = new Point(361, 509);
             btnLogin.Name = "btnLogin";
             btnLogin.Size = new Size(101, 28);
             btnLogin.TabIndex = 0;
@@ -58,7 +59,7 @@
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Calibri", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(346, 377);
+            label1.Location = new Point(316, 368);
             label1.Name = "label1";
             label1.Size = new Size(46, 18);
             label1.TabIndex = 1;
@@ -69,7 +70,7 @@
             lblRegister.AutoSize = true;
             lblRegister.BackColor = Color.Transparent;
             lblRegister.Font = new Font("Calibri", 11.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            lblRegister.Location = new Point(384, 557);
+            lblRegister.Location = new Point(354, 548);
             lblRegister.Name = "lblRegister";
             lblRegister.Size = new Size(116, 18);
             lblRegister.TabIndex = 2;
@@ -81,7 +82,7 @@
             // 
             txtEmail.BackColor = SystemColors.Window;
             txtEmail.Font = new Font("Calibri", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtEmail.Location = new Point(346, 405);
+            txtEmail.Location = new Point(316, 396);
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(197, 26);
             txtEmail.TabIndex = 3;
@@ -89,7 +90,7 @@
             // txtPassword
             // 
             txtPassword.Font = new Font("Calibri", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtPassword.Location = new Point(346, 476);
+            txtPassword.Location = new Point(316, 467);
             txtPassword.Name = "txtPassword";
             txtPassword.Size = new Size(197, 26);
             txtPassword.TabIndex = 5;
@@ -99,7 +100,7 @@
             label2.AutoSize = true;
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Calibri", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(346, 446);
+            label2.Location = new Point(316, 437);
             label2.Name = "label2";
             label2.Size = new Size(51, 18);
             label2.TabIndex = 4;
@@ -128,6 +129,19 @@
             label4.TabIndex = 7;
             label4.Text = resources.GetString("label4.Text");
             // 
+            // chkShowPassword
+            // 
+            chkShowPassword.AutoSize = true;
+            chkShowPassword.BackColor = Color.Transparent;
+            chkShowPassword.Font = new Font("Calibri", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            chkShowPassword.Location = new Point(519, 474);
+            chkShowPassword.Name = "chkShowPassword";
+            chkShowPassword.Size = new Size(58, 17);
+            chkShowPassword.TabIndex = 8;
+            chkShowPassword.Text = "Göster";
+            chkShowPassword.UseVisualStyleBackColor = false;
+            chkShowPassword.CheckedChanged += chkShowPassword_CheckedChanged;
+            // 
             // LoginForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -135,6 +149,7 @@
             BackgroundImage = Properties.Resources.adef1;
             BackgroundImageLayout = ImageLayout.Zoom;
             ClientSize = new Size(632, 621);
+            Controls.Add(chkShowPassword);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(txtPassword);
@@ -145,7 +160,9 @@
             Controls.Add(btnLogin);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             Name = "LoginForm";
-            Text = "Form1";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "LoginForm";
+            Load += LoginForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -160,5 +177,6 @@
         private Label label2;
         private Label label3;
         private Label label4;
+        private CheckBox chkShowPassword;
     }
 }
