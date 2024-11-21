@@ -93,6 +93,16 @@ namespace BiteSizedDietPlan.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ahsap {
+            get {
+                object obj = ResourceManager.GetObject("ahsap", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap bbb {
             get {
                 object obj = ResourceManager.GetObject("bbb", resourceCulture);
@@ -163,6 +173,26 @@ namespace BiteSizedDietPlan.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap soluk {
+            get {
+                object obj = ResourceManager.GetObject("soluk", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap soluk2 {
+            get {
+                object obj = ResourceManager.GetObject("soluk2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap VTg_sWn3oukIbHhnZvi6NTsZU3D76DnPjyNJSnhAVGI {
             get {
                 object obj = ResourceManager.GetObject("VTg-sWn3oukIbHhnZvi6NTsZU3D76DnPjyNJSnhAVGI", resourceCulture);
@@ -176,6 +206,16 @@ namespace BiteSizedDietPlan.Properties {
         internal static System.Drawing.Bitmap VTg_sWn3oukIbHhnZvi6NTsZU3D76DnPjyNJSnhAVGI__1_ {
             get {
                 object obj = ResourceManager.GetObject("VTg-sWn3oukIbHhnZvi6NTsZU3D76DnPjyNJSnhAVGI (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap VTg_sWn3oukIbHhnZvi6NTsZU3D76DnPjyNJSnhAVGI__1_1 {
+            get {
+                object obj = ResourceManager.GetObject("VTg-sWn3oukIbHhnZvi6NTsZU3D76DnPjyNJSnhAVGI (1)1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

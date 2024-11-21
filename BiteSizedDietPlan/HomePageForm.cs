@@ -15,6 +15,58 @@ namespace BiteSizedDietPlan
         public HomePageForm()
         {
             InitializeComponent();
+            LoadMeals();
         }
+
+
+        private void LoadMeals()
+        {
+            // FlowLayoutPanel'i temizle
+            flpMeals.Controls.Clear();
+
+            // Yemek verilerini al
+            var meals = context.Meals.ToList(); // Meals tablosundaki tüm veriler
+
+            // Her bir yemek için bir buton oluştur
+            foreach (var meal in meals)
+            {
+                Button mealButton = new Button();
+                mealButton.Text = meal.Name; // Butonun metni yemek adı
+                mealButton.Size = new Size(150, 150); // Butonun boyutunu ayarla
+
+                // Eğer yemek resmi varsa, resmini ekle
+                if (!string.IsNullOrEmpty(meal.ImagePath))
+                {
+                    try
+                    {
+                        mealButton.Image = Image.FromFile(meal.ImagePath); // Resmi yükle
+                        mealButton.ImageAlign = ContentAlignment.TopCenter; // Resmin konumunu ayarla
+                        mealButton.TextAlign = ContentAlignment.BottomCenter; // Metnin konumunu ayarla
+                    }
+                    catch (Exception ex)
+                    {
+                        // Resim yüklenemezse hata mesajı göster
+                        MessageBox.Show("Resim yüklenemedi: " + ex.Message);
+                    }
+                }
+
+                // Butona tıklandığında yapılacak işlemi belirle
+                mealButton.Click += (sender, e) =>
+                {
+                    MessageBox.Show($"Yemek seçildi: {meal.Name}");
+                };
+
+                // Butonu FlowLayoutPanel'e ekle
+                flpMeals.Controls.Add(mealButton);
+            }
+        }
+
+
+
+
+
+
+
+
     }
 }

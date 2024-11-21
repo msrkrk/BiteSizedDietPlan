@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BiteSizedDietPlan_BLL.Dtos.MealDtos;
 using BiteSizedDietPlan_BLL.Dtos.UserDtos;
 using BiteSizedDietPlan_DAL.Entities;
 using Microsoft.Identity.Client.Extensibility;
@@ -17,6 +18,10 @@ namespace BiteSizedDietPlan_BLL.MappingProfile
             CreateMap<UserDto, User>().ReverseMap();
             CreateMap<LoginUserDto, User>().ReverseMap();
             CreateMap<RegisterUserDto, User>().ReverseMap();
+            CreateMap<FoodEntryDto, FoodEntry>().ReverseMap();
+            CreateMap<FoodEntryMealDto, FoodEntryMeal>().ReverseMap();
+            CreateMap<MealCategoryDto, MealCategory>().ReverseMap();
+            CreateMap<MealDto, Meal>().ReverseMap();
         }
 
     }
