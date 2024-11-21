@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BiteSizedDietPlan.Models.UserViewModels;
 using BiteSizedDietPlan_BLL.AbstractServices;
 using System;
 using System.Collections.Generic;
@@ -14,15 +15,20 @@ namespace BiteSizedDietPlan
 {
     public partial class HomePageForm : Form
     {
+        private readonly UserViewModel _user;
         private readonly IMapper _mapper;
         private readonly IMealService _mealService;
-
-        public HomePageForm(IMapper mapper,IMealService mealService)
+        private readonly IFoodEntryService _foodEntryService;
+        public HomePageForm(IMapper mapper, IMealService mealService, UserViewModel user, IFoodEntryService foodEntryService)
         {
             InitializeComponent();
             _mapper = mapper;
             _mealService = mealService;
+            _user = user;
+            _foodEntryService = foodEntryService;
+
             LoadMeals();
+            LoadFoodEntries();
         }
 
 
@@ -68,10 +74,32 @@ namespace BiteSizedDietPlan
             }
         }
 
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
 
+        private void dateTimePicker_ValueChanged(object sender, EventArgs e)
+        {
+            LoadFoodEntries();
+        }
 
+        private void LoadFoodEntries()
+        {
+            var date = dateTimePicker.Value;
+            var userId = _user.Id;
 
+            var foodEntries = _foodEntryService.GetDailyFoodEntriesOfUser(userId,date);
 
+            dgvFoodEntry.DataSource = foodEntries;
+        }
+
+        private void LoadMeals()
+        {
+            var foodEntry = dgvFoodEntry.SelectedRows;
+
+            var foodEntryMeal = 
+        }
 
 
 

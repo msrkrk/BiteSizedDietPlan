@@ -11,6 +11,7 @@ namespace BiteSizedDietPlan.Models.MealViewModels
 {
     public class FoodEntryViewModel: BaseViewModel
     {
+        public DateTime Date { get; set; }
         public MealType MealType { get; set; }
 
         public int UserId { get; set; }

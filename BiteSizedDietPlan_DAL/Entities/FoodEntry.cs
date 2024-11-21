@@ -9,6 +9,7 @@ namespace BiteSizedDietPlan_DAL.Entities
 {
     public class FoodEntry:BaseClass
     {
+        public DateTime Date { get; set; }
         public MealType MealType { get; set; }
 
         public int UserId { get; set; }

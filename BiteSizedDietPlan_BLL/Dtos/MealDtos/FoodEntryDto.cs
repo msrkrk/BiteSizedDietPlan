@@ -11,6 +11,7 @@ namespace BiteSizedDietPlan_BLL.Dtos.MealDtos
 {
     public class FoodEntryDto:BaseDto
     {
+        public DateTime Date { get; set; }
         public MealType MealType { get; set; }
 
         public int UserId { get; set; }

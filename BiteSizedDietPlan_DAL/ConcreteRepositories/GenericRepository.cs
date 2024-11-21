@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -37,6 +38,11 @@ namespace BiteSizedDietPlan_DAL.ConcreteRepositories
         public List<T> GetAll()
         {
             return _entities.ToList();
+        }
+
+        public List<T> GetAll(Expression<Func<T,bool>> predicate)
+        {
+            return _entities.Where(predicate).ToList();
         }
 
         public T GetById(int id)
