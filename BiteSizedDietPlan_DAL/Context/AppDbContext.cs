@@ -15,6 +15,8 @@ namespace BiteSizedDietPlan_DAL.Context
         public DbSet<User> Users { get; set; }
         public DbSet<MealCategory> MealCategories { get; set; }
         public DbSet<Meal> Meals { get; set; }
+        public DbSet<FoodEntry> FoodEntries { get; set; }
+        public DbSet<FoodEntryMeal> FoodEntryMeals { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("server=10.211.55.2;database=BiteSizedDietPlanDb;user id=sa;password=Qwq1234.;trustservercertificate=true;");
@@ -31,6 +33,27 @@ namespace BiteSizedDietPlan_DAL.Context
                 .HasOne(m => m.MealCategory)
                 .WithMany(c => c.Meals)
                 .HasForeignKey(m => m.MealCategoryId);
+
+            // FoodEntryMeal için composite primary key tanımlandı.
+            modelBuilder.Entity<FoodEntryMeal>()
+                .HasKey(fem => new { fem.FoodEntryId, fem.MealId });
+
+            // User - FoodEntry: 1-M İlişki
+            modelBuilder.Entity<FoodEntry>()
+                .HasOne(fe => fe.User)
+                .WithMany(u => u.FoodEntries)
+                .HasForeignKey(fe => fe.UserId);
+
+            // FoodEntry - Meal: M-N İlişki
+            modelBuilder.Entity<FoodEntryMeal>()
+                .HasOne(fem => fem.FoodEntry)
+                .WithMany(fe => fe.FoodEntryMeals)
+                .HasForeignKey(fem => fem.FoodEntryId);
+
+            modelBuilder.Entity<FoodEntryMeal>()
+                .HasOne(fem => fem.Meal)
+                .WithMany(m => m.FoodEntryMeals)
+                .HasForeignKey(fem => fem.MealId);
 
             //Seed data ile yemek kategorileri eklendi.
             modelBuilder.Entity<MealCategory>().HasData(

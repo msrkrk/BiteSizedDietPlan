@@ -15,5 +15,7 @@ namespace BiteSizedDietPlan_DAL.Entities
         public int MealCategoryId { get; set; }
         public MealCategory MealCategory { get; set; }
 
+        public List<FoodEntryMeal> FoodEntryMeals { get; set; }
+
     }
 }

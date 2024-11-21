@@ -10,5 +10,7 @@ namespace BiteSizedDietPlan_DAL.Entities
     {
         public string Email { get; set; }
         public string Password { get; set; }
+
+        public List<FoodEntry> FoodEntries{ get; set; }
     }
 }
