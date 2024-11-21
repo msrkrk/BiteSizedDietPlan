@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -32,13 +33,11 @@ namespace BiteSizedDietPlan_DAL.Context
 
             //Seed data ile yemek kategorileri eklendi.
             modelBuilder.Entity<MealCategory>().HasData(
-            new MealCategory { Id = 1, Name = "Kahvaltılıklar" },
-            new MealCategory { Id = 2, Name = "Öğle Yemekleri" },
-            new MealCategory { Id = 3, Name = "Akşam Yemekleri" },
-            new MealCategory { Id = 4, Name = "Atıştırmalıklar" });
-
+                new MealCategory { Id = 1, Name = "Kahvaltılıklar", CreatedDate = new DateTime(2024, 11, 21) },
+                new MealCategory { Id = 2, Name = "Öğle Yemekleri", CreatedDate = new DateTime(2024, 11, 21) },
+                new MealCategory { Id = 3, Name = "Akşam Yemekleri", CreatedDate = new DateTime(2024, 11, 21) },
+                new MealCategory { Id = 4, Name = "Atıştırmalıklar", CreatedDate = new DateTime(2024, 11, 21) }
+            );
         }
-
-
     }
 }
