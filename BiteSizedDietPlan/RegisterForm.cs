@@ -20,13 +20,15 @@ namespace BiteSizedDietPlan
         private readonly IUserService _userService;
         private readonly IMapper _mapper;
         private readonly IHashService _hashService;
+        private readonly IMealService _mealService;
 
-        public RegisterForm(IUserService userService, IMapper mapper, IHashService hashService)
+        public RegisterForm(IUserService userService, IMapper mapper, IHashService hashService, IMealService mealService)
         {
             InitializeComponent();
             _userService = userService;
             _mapper = mapper;
             _hashService = hashService;
+            _mealService = mealService;
         }
 
         private void btnRegister_Click(object sender, EventArgs e)
@@ -56,7 +58,7 @@ namespace BiteSizedDietPlan
                     _userService.Register(_mapper.Map<RegisterUserDto>(user));
                     MessageBox.Show("Kayıt işlemi başarı ile gerçekleştirilmiştir, aramıza Hoşgeldiniz.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    Form loginForm = new LoginForm(_userService, _mapper, _hashService);
+                    Form loginForm = new LoginForm(_userService, _mapper, _hashService,_mealService);
                     this.Hide();
                     loginForm.ShowDialog();
                 }
@@ -101,7 +103,7 @@ namespace BiteSizedDietPlan
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            Form loginForm = new LoginForm(_userService, _mapper, _hashService);
+            Form loginForm = new LoginForm(_userService, _mapper, _hashService,_mealService);
             this.Hide();
             loginForm.ShowDialog();
         }

@@ -11,13 +11,15 @@ namespace BiteSizedDietPlan
         private readonly IUserService _userService;
         private readonly IMapper _mapper;
         private readonly IHashService _hashService;
+        private readonly IMealService _mealService;
 
-        public LoginForm(IUserService userService, IMapper mapper, IHashService hashService)
+        public LoginForm(IUserService userService, IMapper mapper, IHashService hashService,IMealService mealService)
         {
             InitializeComponent();
             _userService = userService;
             _mapper = mapper;
             _hashService = hashService;
+            _mealService = mealService;
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -40,8 +42,7 @@ namespace BiteSizedDietPlan
                     MessageBox.Show("Giriş yaptığınız email veya parolaya ait kullanıcı bulunmuyor, lütfen tekrar deneyiniz.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                MessageBox.Show("Hoşgeldiniz.");
-                Form homePage = new HomePageForm();
+                Form homePage = new HomePageForm(_mapper,_mealService);
                 this.Hide();
                 homePage.ShowDialog();
 
@@ -55,7 +56,7 @@ namespace BiteSizedDietPlan
 
         private void lblRegister_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Form form = new RegisterForm(_userService, _mapper, _hashService);
+            Form form = new RegisterForm(_userService, _mapper, _hashService, _mealService);
             this.Hide();
             form.ShowDialog();
         }

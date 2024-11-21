@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AutoMapper;
+using BiteSizedDietPlan_BLL.AbstractServices;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +14,14 @@ namespace BiteSizedDietPlan
 {
     public partial class HomePageForm : Form
     {
-        public HomePageForm()
+        private readonly IMapper _mapper;
+        private readonly IMealService _mealService;
+
+        public HomePageForm(IMapper mapper,IMealService mealService)
         {
             InitializeComponent();
+            _mapper = mapper;
+            _mealService = mealService;
             LoadMeals();
         }
 
@@ -25,14 +32,14 @@ namespace BiteSizedDietPlan
             flpMeals.Controls.Clear();
 
             // Yemek verilerini al
-            var meals = context.Meals.ToList(); // Meals tablosundaki tüm veriler
+            var meals = _mealService.GetMeals().ToList(); // Meals tablosundaki tüm veriler
 
             // Her bir yemek için bir buton oluştur
             foreach (var meal in meals)
             {
                 Button mealButton = new Button();
                 mealButton.Text = meal.Name; // Butonun metni yemek adı
-                mealButton.Size = new Size(150, 150); // Butonun boyutunu ayarla
+                mealButton.Size = new Size(180, 180); // Butonun boyutunu ayarla
 
                 // Eğer yemek resmi varsa, resmini ekle
                 if (!string.IsNullOrEmpty(meal.ImagePath))

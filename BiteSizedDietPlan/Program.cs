@@ -30,10 +30,12 @@ namespace BiteSizedDietPlan
 
             var context = new AppDbContext();
             var userGenericRepository = new GenericRepository<User>(context);
-            var userRepository = new UserRepository<User>(context); 
-            var userService = new UserService(userGenericRepository, mapper,userRepository);
+            var userRepository = new UserRepository<User>(context);
+            var userService = new UserService(userGenericRepository, mapper, userRepository);
             var hashService = new HashService();
-            Application.Run(new LoginForm(userService, mapper,hashService));
+            var mealGenericRepository = new GenericRepository<Meal>(context);
+            var mealService = new MealService(mealGenericRepository, mapper);
+            Application.Run(new LoginForm(userService, mapper, hashService, mealService));
         }
     }
 }
