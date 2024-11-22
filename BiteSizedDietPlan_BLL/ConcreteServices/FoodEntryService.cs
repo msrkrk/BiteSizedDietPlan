@@ -37,7 +37,6 @@ namespace BiteSizedDietPlan_BLL.ConcreteServices
 
         public void DeleteFoodEntryMeal(int id)
         {
-            var deletedItem = _foodEntryMealRepository.GetAll(x => x.Id == id);
             _foodEntryMealRepository.Delete(id);
         }
 
