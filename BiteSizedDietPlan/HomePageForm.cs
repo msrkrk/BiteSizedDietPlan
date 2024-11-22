@@ -1,12 +1,16 @@
 ﻿using AutoMapper;
+using BiteSizedDietPlan.Models.MealViewModels;
 using BiteSizedDietPlan.Models.UserViewModels;
 using BiteSizedDietPlan_BLL.AbstractServices;
+using BiteSizedDietPlan_DAL.Entities;
+using BiteSizedDietPlan_DAL.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -19,6 +23,12 @@ namespace BiteSizedDietPlan
         private readonly IMapper _mapper;
         private readonly IMealService _mealService;
         private readonly IFoodEntryService _foodEntryService;
+     
+        FoodEntryViewModel choosenFoodEntry;
+        MealViewModel choosenMeal;
+        FoodEntryMealViewModel choosenFoodEntryMeal;
+
+
         public HomePageForm(IMapper mapper, IMealService mealService, UserViewModel user, IFoodEntryService foodEntryService)
         {
             InitializeComponent();
@@ -26,9 +36,10 @@ namespace BiteSizedDietPlan
             _mealService = mealService;
             _user = user;
             _foodEntryService = foodEntryService;
-
+        
             LoadMeals();
             LoadFoodEntries();
+            ShowFoodEntries();
         }
 
 
@@ -94,12 +105,26 @@ namespace BiteSizedDietPlan
             dgvFoodEntry.DataSource = foodEntries;
         }
 
-        private void LoadMeals()
+        private void ShowFoodEntries()
         {
-            var foodEntry = dgvFoodEntry.SelectedRows;
+            foreach (MealType mealType in Enum.GetValues(typeof(MealType)))
+            {
+                cmbAddFoodEntry.Items.Add(new { Text = GetDescription(mealType), Value = mealType });
+            }
 
-            var foodEntryMeal = 
+            cmbAddFoodEntry.DisplayMember = "Text"; // Gösterilecek metin
+            cmbAddFoodEntry.ValueMember = "Value";  // Arka planda tutulan değer
         }
+
+        public static string GetDescription(Enum value)
+        {
+            FieldInfo field = value.GetType().GetField(value.ToString());
+            DescriptionAttribute attribute =
+                (DescriptionAttribute)Attribute.GetCustomAttribute(field, typeof(DescriptionAttribute));
+
+            return attribute == null ? value.ToString() : attribute.Description;
+        }
+
 
 
 
