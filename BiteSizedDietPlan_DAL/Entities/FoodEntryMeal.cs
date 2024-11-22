@@ -8,6 +8,7 @@ namespace BiteSizedDietPlan_DAL.Entities
 {
     public class FoodEntryMeal : BaseClass
     {
+        public int Portion { get; set; }
         public int FoodEntryId { get; set; }
         public FoodEntry FoodEntry { get; set; }
 

@@ -16,6 +16,7 @@ namespace BiteSizedDietPlan_BLL.ConcreteServices
         private readonly IGenericRepository<FoodEntry> _foodEntryRepository;
         private readonly IMapper _mapper;
         private readonly IGenericRepository<FoodEntryMeal> _foodEntryMealRepository;
+        private readonly FoodEntryDto _foodEntryDto;
 
         public FoodEntryService(IGenericRepository<FoodEntry> foodEntryRepository, IMapper mapper, IGenericRepository<FoodEntryMeal> foodEntryMealRepository)
         {
@@ -46,6 +47,11 @@ namespace BiteSizedDietPlan_BLL.ConcreteServices
             var foodEntryMeals = _foodEntryMealRepository.GetAll(x => x.FoodEntryId == foodEntryId);
 
             return foodEntryMeals.Select(x => _mapper.Map<FoodEntryMealDto>(x)).ToList();
+        }
+
+        public void UpdateFoodEntryMeal(FoodEntryMealDto foodEntryMealDto)
+        {
+            _foodEntryMealRepository.Update(_mapper.Map<FoodEntryMeal>(foodEntryMealDto));
         }
     }
 }

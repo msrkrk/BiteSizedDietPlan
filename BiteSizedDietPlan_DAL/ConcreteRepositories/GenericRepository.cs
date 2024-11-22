@@ -24,37 +24,40 @@ namespace BiteSizedDietPlan_DAL.ConcreteRepositories
 
         public void Add(T entity)
         {
-            _entities.Add(entity);
+            var entry = _entities.Add(entity);
             _context.SaveChanges();
+            entry.State = EntityState.Detached;
         }
 
         public void Delete(int id)
         {
             var entity = GetById(id);
-            _entities.Remove(entity);
+            var entry = _entities.Remove(entity);
             _context.SaveChanges();
+
+            entry.State = EntityState.Detached;
         }
 
         public List<T> GetAll()
         {
-            return _entities.ToList();
+            return _entities.AsNoTracking().ToList();
         }
 
         public List<T> GetAll(Expression<Func<T,bool>> predicate)
         {
-            return _entities.Where(predicate).ToList();
+            return _entities.AsNoTracking().Where(predicate).ToList();
         }
 
         public T GetById(int id)
         {
-            return _entities.FirstOrDefault(x => x.Id == id);
+            return _entities.AsNoTracking().FirstOrDefault(x => x.Id == id);
         }
 
-        public void Update(int id, T entity)
+        public void Update(T entity)
         {
-            var entityToUpdate = GetById(id);
-            _entities.Update(entityToUpdate);
+            var entry = _entities.Update(entity);
             _context.SaveChanges();
+            entry.State = EntityState.Detached;
         }
     }
 }

@@ -15,7 +15,7 @@ namespace BiteSizedDietPlan_DAL.AbstractRepositories
         void Delete(int id);
         T GetById(int id);
         List<T> GetAll();
-        void Update(int id, T entity);
+        void Update(T entity);
         List<T> GetAll(Expression<Func<T,bool>>predicate);
 
 

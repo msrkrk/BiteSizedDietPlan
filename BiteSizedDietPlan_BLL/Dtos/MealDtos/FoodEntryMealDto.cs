@@ -9,6 +9,7 @@ namespace BiteSizedDietPlan_BLL.Dtos.MealDtos
 {
     public class FoodEntryMealDto:BaseDto
     {
+        public int Portion { get; set; }
         public int FoodEntryId { get; set; }
         public FoodEntryDto FoodEntry { get; set; }
 

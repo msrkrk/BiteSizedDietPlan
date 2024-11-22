@@ -10,6 +10,7 @@ namespace BiteSizedDietPlan.Models.MealViewModels
 {
     public class FoodEntryMealViewModel:BaseViewModel
     {
+        public int Portion { get; set; }
         public int FoodEntryId { get; set; }
         public FoodEntryViewModel FoodEntry { get; set; }
 
