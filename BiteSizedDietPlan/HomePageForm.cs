@@ -39,14 +39,8 @@ namespace BiteSizedDietPlan
             _foodEntryService = foodEntryService;
 
             LoadMeals();
-            LoadFoodEntries();
             ShowMealTypes();
-            dgvFoodEntry.Columns[2].Visible = false;
-            dgvFoodEntry.Columns[4].Visible = false;
-            dgvFoodEntry.Columns[3].Visible = false;
-
-            
-
+            LoadFoodEntries();
         }
 
 
@@ -144,6 +138,19 @@ namespace BiteSizedDietPlan
                     dgvFoodEntry.Columns.Insert(columnIndex, deleteButton);
                 }
             }
+
+            dgvFoodEntry.Columns["Date"].Visible = false;
+            dgvFoodEntry.Columns["User"].Visible = false;
+            dgvFoodEntry.Columns["UserId"].Visible = false;
+            dgvFoodEntry.Columns["CreatedDate"].Visible = false;
+
+
+            if (foodEntries.Count > 0 && _selectedFoodEntryId == 0)
+            {
+                _selectedFoodEntryId = foodEntries[0].Id;
+            }
+
+            LoadFoodEntryMeals();
         }
 
         private void ShowMealTypes()
@@ -190,20 +197,21 @@ namespace BiteSizedDietPlan
                 UserId = userId,
             };
 
-            _foodEntryService.AddFoodEntry(foodEntry);
+            _selectedFoodEntryId = _foodEntryService.AddFoodEntry(foodEntry);
 
             LoadFoodEntries();
         }
 
         private void dgvFoodEntry_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex == -1) { return; }
+
             var foodEntry = (FoodEntryDto)dgvFoodEntry.Rows[e.RowIndex].DataBoundItem;
             if (e.ColumnIndex == dgvFoodEntry.Columns["Öğün Sil"].Index)
             {
                 _foodEntryService.DeleteFoodEntry(foodEntry.Id);
                 LoadFoodEntries();
                 ResetFoodEnryMealDgv();
-
 
                 return;
             }
@@ -230,6 +238,8 @@ namespace BiteSizedDietPlan
 
         private void LoadFoodEntryMeals()
         {
+            if (_selectedFoodEntryId == 0) { return; }
+
             var foodEntries = _foodEntryService.GetFoodEntryMeals(_selectedFoodEntryId);
             dgvMeals.DataSource = foodEntries;
 
@@ -284,11 +294,13 @@ namespace BiteSizedDietPlan
             if(e.ColumnIndex == dgvMeals.Columns["Yemek Sil"].Index)
             {
                 _foodEntryService.DeleteFoodEntryMeal(meal.Id);
+                LoadFoodEntryMeals();
             }
-            if(e.ColumnIndex == dgvMeals.Columns["Porsiyon Arttır"].Index)
+            if (e.ColumnIndex == dgvMeals.Columns["Porsiyon Arttır"].Index)
             {
                 meal.Portion++;
                 _foodEntryService.UpdateFoodEntryMeal(meal);
+                LoadFoodEntryMeals();
             }
             if (e.ColumnIndex == dgvMeals.Columns["Porsiyon Azalt"].Index)
             {
@@ -303,9 +315,8 @@ namespace BiteSizedDietPlan
                 {
                     _foodEntryService.UpdateFoodEntryMeal(meal);
                 }
-              
+                LoadFoodEntryMeals();
             }
-            LoadFoodEntryMeals();
 
         }
 

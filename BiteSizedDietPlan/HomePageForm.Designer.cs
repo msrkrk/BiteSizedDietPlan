@@ -60,24 +60,26 @@
             tableLayoutPanelBase.ColumnCount = 3;
             tableLayoutPanelBase.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 80F));
             tableLayoutPanelBase.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
-            tableLayoutPanelBase.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
+            tableLayoutPanelBase.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 11F));
             tableLayoutPanelBase.Controls.Add(flpMeals, 1, 0);
             tableLayoutPanelBase.Controls.Add(tableLayoutPanel2L, 0, 0);
             tableLayoutPanelBase.Dock = DockStyle.Fill;
             tableLayoutPanelBase.Location = new Point(0, 0);
+            tableLayoutPanelBase.Margin = new Padding(2, 1, 2, 1);
             tableLayoutPanelBase.Name = "tableLayoutPanelBase";
             tableLayoutPanelBase.RowCount = 1;
             tableLayoutPanelBase.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanelBase.Size = new Size(3054, 1819);
+            tableLayoutPanelBase.Size = new Size(1644, 759);
             tableLayoutPanelBase.TabIndex = 1;
             // 
             // flpMeals
             // 
             flpMeals.AutoScroll = true;
             flpMeals.Dock = DockStyle.Fill;
-            flpMeals.Location = new Point(2430, 3);
+            flpMeals.Location = new Point(1308, 1);
+            flpMeals.Margin = new Padding(2, 1, 2, 1);
             flpMeals.Name = "flpMeals";
-            flpMeals.Size = new Size(600, 1813);
+            flpMeals.Size = new Size(322, 757);
             flpMeals.TabIndex = 0;
             // 
             // tableLayoutPanel2L
@@ -88,23 +90,29 @@
             tableLayoutPanel2L.Controls.Add(tableLayoutPanelL3, 0, 2);
             tableLayoutPanel2L.Controls.Add(tableLayoutPanel1, 0, 0);
             tableLayoutPanel2L.Dock = DockStyle.Fill;
-            tableLayoutPanel2L.Location = new Point(3, 3);
+            tableLayoutPanel2L.Location = new Point(2, 1);
+            tableLayoutPanel2L.Margin = new Padding(2, 1, 2, 1);
             tableLayoutPanel2L.Name = "tableLayoutPanel2L";
             tableLayoutPanel2L.RowCount = 3;
             tableLayoutPanel2L.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel2L.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel2L.RowStyles.Add(new RowStyle(SizeType.Absolute, 70F));
-            tableLayoutPanel2L.Size = new Size(2421, 1813);
+            tableLayoutPanel2L.RowStyles.Add(new RowStyle(SizeType.Absolute, 33F));
+            tableLayoutPanel2L.Size = new Size(1302, 757);
             tableLayoutPanel2L.TabIndex = 1;
             // 
             // dgvMeals
             // 
             dgvMeals.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvMeals.Dock = DockStyle.Fill;
-            dgvMeals.Location = new Point(3, 874);
+            dgvMeals.Location = new Point(2, 363);
+            dgvMeals.Margin = new Padding(2, 1, 2, 1);
+            dgvMeals.MultiSelect = false;
             dgvMeals.Name = "dgvMeals";
+            dgvMeals.ReadOnly = true;
             dgvMeals.RowHeadersWidth = 82;
-            dgvMeals.Size = new Size(2415, 865);
+            dgvMeals.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            dgvMeals.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvMeals.Size = new Size(1298, 360);
             dgvMeals.TabIndex = 2;
             dgvMeals.CellClick += dgvMeals_CellClick;
             // 
@@ -114,17 +122,18 @@
             tableLayoutPanelL3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
             tableLayoutPanelL3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333359F));
             tableLayoutPanelL3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333359F));
-            tableLayoutPanelL3.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 200F));
+            tableLayoutPanelL3.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 108F));
             tableLayoutPanelL3.Controls.Add(btnExit, 3, 0);
             tableLayoutPanelL3.Controls.Add(btnMealTypeReport, 2, 0);
             tableLayoutPanelL3.Controls.Add(btnComparisonReport, 1, 0);
             tableLayoutPanelL3.Controls.Add(btnEndofDayReport, 0, 0);
             tableLayoutPanelL3.Dock = DockStyle.Fill;
-            tableLayoutPanelL3.Location = new Point(3, 1745);
+            tableLayoutPanelL3.Location = new Point(2, 725);
+            tableLayoutPanelL3.Margin = new Padding(2, 1, 2, 1);
             tableLayoutPanelL3.Name = "tableLayoutPanelL3";
             tableLayoutPanelL3.RowCount = 1;
             tableLayoutPanelL3.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanelL3.Size = new Size(2415, 65);
+            tableLayoutPanelL3.Size = new Size(1298, 31);
             tableLayoutPanelL3.TabIndex = 0;
             // 
             // btnExit
@@ -135,9 +144,10 @@
             btnExit.FlatStyle = FlatStyle.Flat;
             btnExit.Font = new Font("Calibri", 12F, FontStyle.Bold);
             btnExit.ForeColor = Color.Black;
-            btnExit.Location = new Point(2217, 3);
+            btnExit.Location = new Point(1190, 1);
+            btnExit.Margin = new Padding(2, 1, 2, 1);
             btnExit.Name = "btnExit";
-            btnExit.Size = new Size(195, 59);
+            btnExit.Size = new Size(106, 29);
             btnExit.TabIndex = 4;
             btnExit.Text = "ÇIKIŞ YAP";
             btnExit.UseVisualStyleBackColor = false;
@@ -151,9 +161,10 @@
             btnMealTypeReport.FlatStyle = FlatStyle.Flat;
             btnMealTypeReport.Font = new Font("Calibri", 12F, FontStyle.Bold);
             btnMealTypeReport.ForeColor = Color.Black;
-            btnMealTypeReport.Location = new Point(1479, 3);
+            btnMealTypeReport.Location = new Point(794, 1);
+            btnMealTypeReport.Margin = new Padding(2, 1, 2, 1);
             btnMealTypeReport.Name = "btnMealTypeReport";
-            btnMealTypeReport.Size = new Size(732, 59);
+            btnMealTypeReport.Size = new Size(392, 29);
             btnMealTypeReport.TabIndex = 3;
             btnMealTypeReport.Text = "Yemek Çeşidi Raporunu Görüntüle!";
             btnMealTypeReport.UseVisualStyleBackColor = false;
@@ -166,9 +177,10 @@
             btnComparisonReport.FlatStyle = FlatStyle.Flat;
             btnComparisonReport.Font = new Font("Calibri", 12F, FontStyle.Bold);
             btnComparisonReport.ForeColor = Color.Black;
-            btnComparisonReport.Location = new Point(741, 3);
+            btnComparisonReport.Location = new Point(398, 1);
+            btnComparisonReport.Margin = new Padding(2, 1, 2, 1);
             btnComparisonReport.Name = "btnComparisonReport";
-            btnComparisonReport.Size = new Size(732, 59);
+            btnComparisonReport.Size = new Size(392, 29);
             btnComparisonReport.TabIndex = 2;
             btnComparisonReport.Text = "Kıyas Raporunu Görüntüle!";
             btnComparisonReport.UseVisualStyleBackColor = false;
@@ -181,9 +193,10 @@
             btnEndofDayReport.FlatStyle = FlatStyle.Flat;
             btnEndofDayReport.Font = new Font("Calibri", 12F, FontStyle.Bold);
             btnEndofDayReport.ForeColor = Color.Black;
-            btnEndofDayReport.Location = new Point(3, 3);
+            btnEndofDayReport.Location = new Point(2, 1);
+            btnEndofDayReport.Margin = new Padding(2, 1, 2, 1);
             btnEndofDayReport.Name = "btnEndofDayReport";
-            btnEndofDayReport.Size = new Size(732, 59);
+            btnEndofDayReport.Size = new Size(392, 29);
             btnEndofDayReport.TabIndex = 1;
             btnEndofDayReport.Text = "Gün Sonu Raporunu Görüntüle!";
             btnEndofDayReport.UseVisualStyleBackColor = false;
@@ -195,12 +208,13 @@
             tableLayoutPanel1.Controls.Add(tableLayoutPanel2, 0, 0);
             tableLayoutPanel1.Controls.Add(dgvFoodEntry, 0, 1);
             tableLayoutPanel1.Dock = DockStyle.Fill;
-            tableLayoutPanel1.Location = new Point(3, 3);
+            tableLayoutPanel1.Location = new Point(2, 1);
+            tableLayoutPanel1.Margin = new Padding(2, 1, 2, 1);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 2;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 56F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 26F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Size = new Size(2415, 865);
+            tableLayoutPanel1.Size = new Size(1298, 360);
             tableLayoutPanel1.TabIndex = 1;
             // 
             // tableLayoutPanel2
@@ -211,19 +225,21 @@
             tableLayoutPanel2.Controls.Add(dateTimePicker, 0, 0);
             tableLayoutPanel2.Controls.Add(flowLayoutPanel1, 1, 0);
             tableLayoutPanel2.Dock = DockStyle.Fill;
-            tableLayoutPanel2.Location = new Point(3, 3);
+            tableLayoutPanel2.Location = new Point(2, 1);
+            tableLayoutPanel2.Margin = new Padding(2, 1, 2, 1);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.RowCount = 1;
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 80F));
-            tableLayoutPanel2.Size = new Size(2409, 50);
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 38F));
+            tableLayoutPanel2.Size = new Size(1294, 24);
             tableLayoutPanel2.TabIndex = 1;
             // 
             // dateTimePicker
             // 
             dateTimePicker.Dock = DockStyle.Fill;
-            dateTimePicker.Location = new Point(3, 3);
+            dateTimePicker.Location = new Point(2, 1);
+            dateTimePicker.Margin = new Padding(2, 1, 2, 1);
             dateTimePicker.Name = "dateTimePicker";
-            dateTimePicker.Size = new Size(1198, 39);
+            dateTimePicker.Size = new Size(643, 23);
             dateTimePicker.TabIndex = 0;
             dateTimePicker.ValueChanged += dateTimePicker_ValueChanged;
             // 
@@ -231,25 +247,28 @@
             // 
             flowLayoutPanel1.Controls.Add(cmbMealType);
             flowLayoutPanel1.Controls.Add(btnAddFoodEntryMeal);
-            flowLayoutPanel1.Location = new Point(1207, 3);
+            flowLayoutPanel1.Location = new Point(649, 1);
+            flowLayoutPanel1.Margin = new Padding(2, 1, 2, 1);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(1091, 47);
+            flowLayoutPanel1.Size = new Size(587, 22);
             flowLayoutPanel1.TabIndex = 1;
             // 
             // cmbMealType
             // 
             cmbMealType.FormattingEnabled = true;
-            cmbMealType.Location = new Point(3, 3);
+            cmbMealType.Location = new Point(2, 1);
+            cmbMealType.Margin = new Padding(2, 1, 2, 1);
             cmbMealType.Name = "cmbMealType";
-            cmbMealType.Size = new Size(360, 40);
+            cmbMealType.Size = new Size(196, 23);
             cmbMealType.TabIndex = 5;
             cmbMealType.Text = "Lütfen yemek girişi yapmak istediğiniz öğünü seçiniz.";
             // 
             // btnAddFoodEntryMeal
             // 
-            btnAddFoodEntryMeal.Location = new Point(369, 3);
+            btnAddFoodEntryMeal.Location = new Point(202, 1);
+            btnAddFoodEntryMeal.Margin = new Padding(2, 1, 2, 1);
             btnAddFoodEntryMeal.Name = "btnAddFoodEntryMeal";
-            btnAddFoodEntryMeal.Size = new Size(150, 44);
+            btnAddFoodEntryMeal.Size = new Size(81, 21);
             btnAddFoodEntryMeal.TabIndex = 4;
             btnAddFoodEntryMeal.Text = "Ekle";
             btnAddFoodEntryMeal.UseVisualStyleBackColor = true;
@@ -259,23 +278,27 @@
             // 
             dgvFoodEntry.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvFoodEntry.Dock = DockStyle.Fill;
-            dgvFoodEntry.Location = new Point(3, 59);
+            dgvFoodEntry.Location = new Point(2, 27);
+            dgvFoodEntry.Margin = new Padding(2, 1, 2, 1);
+            dgvFoodEntry.MultiSelect = false;
             dgvFoodEntry.Name = "dgvFoodEntry";
+            dgvFoodEntry.ReadOnly = true;
             dgvFoodEntry.RowHeadersWidth = 82;
-            dgvFoodEntry.Size = new Size(2409, 803);
+            dgvFoodEntry.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            dgvFoodEntry.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvFoodEntry.Size = new Size(1294, 332);
             dgvFoodEntry.TabIndex = 3;
             dgvFoodEntry.CellClick += dgvFoodEntry_CellClick;
             // 
             // HomePageForm
             // 
-            AutoScaleDimensions = new SizeF(13F, 32F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.WhiteSmoke;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(3054, 1819);
+            ClientSize = new Size(1644, 759);
             Controls.Add(tableLayoutPanelBase);
             FormBorderStyle = FormBorderStyle.None;
-            Margin = new Padding(6);
             Name = "HomePageForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "HomePageForm";

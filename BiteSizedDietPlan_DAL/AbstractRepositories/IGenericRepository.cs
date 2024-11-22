@@ -10,7 +10,7 @@ namespace BiteSizedDietPlan_DAL.AbstractRepositories
 {
     public interface IGenericRepository<T> where T : BaseClass
     {
-        void Add(T entity); 
+        int Add(T entity); 
 
         void Delete(int id);
         T GetById(int id);

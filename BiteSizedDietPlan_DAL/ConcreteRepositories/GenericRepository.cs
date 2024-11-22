@@ -22,19 +22,19 @@ namespace BiteSizedDietPlan_DAL.ConcreteRepositories
             _entities = _context.Set<T>();
         }
 
-        public virtual void Add(T entity)
+        public virtual int Add(T entity)
         {
-            var entry = _entities.Add(entity);
+            _entities.Add(entity);
             _context.SaveChanges();
-            entry.State = EntityState.Detached;
+
+            return entity.Id;
         }
 
         public virtual void Delete(int id)
         {
             var entity = GetById(id);
-            var entry = _entities.Remove(entity);
+            _entities.Remove(entity);
             _context.SaveChanges();
-            entry.State = EntityState.Detached;
         }
 
         public virtual List<T> GetAll()
@@ -54,9 +54,8 @@ namespace BiteSizedDietPlan_DAL.ConcreteRepositories
 
         public virtual void Update(T entity)
         {
-            var entry = _entities.Update(entity);
+            _entities.Update(entity);
             _context.SaveChanges();
-            entry.State = EntityState.Detached;
         }
     }
 }

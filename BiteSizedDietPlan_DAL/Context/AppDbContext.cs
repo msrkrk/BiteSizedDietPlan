@@ -147,5 +147,14 @@ namespace BiteSizedDietPlan_DAL.Context
 
 
         }
+
+        public override int SaveChanges()
+        {
+            var result = base.SaveChanges();
+
+            ChangeTracker.Clear();
+
+            return result;
+        }
     }
 }

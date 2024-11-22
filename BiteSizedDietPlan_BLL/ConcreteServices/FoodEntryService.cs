@@ -25,9 +25,9 @@ namespace BiteSizedDietPlan_BLL.ConcreteServices
             _foodEntryMealRepository = foodEntryMealRepository;
         }
 
-        public void AddFoodEntry(FoodEntryDto foodEntryDto)
+        public int AddFoodEntry(FoodEntryDto foodEntryDto)
         {
-            _foodEntryRepository.Add(_mapper.Map<FoodEntry>(foodEntryDto));
+            return _foodEntryRepository.Add(_mapper.Map<FoodEntry>(foodEntryDto));
         }
 
         public void AddFoodEntryMeal(FoodEntryMealDto foodEntryMealDto)

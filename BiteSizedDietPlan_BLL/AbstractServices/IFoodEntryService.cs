@@ -12,7 +12,7 @@ namespace BiteSizedDietPlan_BLL.AbstractServices
     {
         List<FoodEntryDto> GetDailyFoodEntriesOfUser(int userId, DateTime date);
 
-        void AddFoodEntry(FoodEntryDto foodEntryDto);
+        int AddFoodEntry(FoodEntryDto foodEntryDto);
 
         List<FoodEntryMealDto> GetFoodEntryMeals(int foodEntryId);
 
