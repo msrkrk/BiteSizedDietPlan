@@ -22,6 +22,8 @@ namespace BiteSizedDietPlan_BLL.MappingProfile
             CreateMap<FoodEntryMealDto, FoodEntryMeal>().ReverseMap();
             CreateMap<MealCategoryDto, MealCategory>().ReverseMap();
             CreateMap<MealDto, Meal>().ReverseMap();
+           
+           
         }
 
     }

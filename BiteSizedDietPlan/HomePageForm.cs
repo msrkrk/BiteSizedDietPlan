@@ -2,6 +2,7 @@
 using BiteSizedDietPlan.Models.MealViewModels;
 using BiteSizedDietPlan.Models.UserViewModels;
 using BiteSizedDietPlan_BLL.AbstractServices;
+using BiteSizedDietPlan_BLL.ConcreteServices;
 using BiteSizedDietPlan_BLL.Dtos.MealDtos;
 using BiteSizedDietPlan_DAL.Entities;
 using BiteSizedDietPlan_DAL.Enums;
@@ -39,6 +40,10 @@ namespace BiteSizedDietPlan
             LoadMeals();
             LoadFoodEntries();
             ShowMealTypes();
+            dgvFoodEntry.Columns[2].Visible = false;
+            dgvFoodEntry.Columns[4].Visible = false;
+            dgvFoodEntry.Columns[3].Visible = false;
+
         }
 
 
@@ -191,10 +196,7 @@ namespace BiteSizedDietPlan
                 // Satırdan veri alma
                 _selectedFoodEntryId = (int)selectedRow.Cells["Id"].Value;
 
-
                 LoadFoodEntryMeals();
-
-
             }
         }
 
@@ -202,15 +204,68 @@ namespace BiteSizedDietPlan
         {
             var foodEntries = _foodEntryService.GetFoodEntryMeals(_selectedFoodEntryId);
             dgvMeals.DataSource = foodEntries;
+
+            DataGridViewButtonColumn deleteButton = new DataGridViewButtonColumn();
+            {
+                deleteButton.Name = "Yemek Sil";
+                deleteButton.Text = "SİL";
+                deleteButton.UseColumnTextForButtonValue = true;
+                int columnIndex = 6;
+                if (dgvMeals.Columns["Yemek Sil"] == null)
+                {
+                    dgvMeals.Columns.Insert(columnIndex, deleteButton);
+                }
+
+                dgvMeals.CellClick += dgvMeals_CellClick;
+
+            }
+
+            DataGridViewButtonColumn updateButton = new DataGridViewButtonColumn();
+            {
+                updateButton.Name = "Yemek Güncelle";
+                updateButton.Text = "GÜNCELLE";
+                updateButton.UseColumnTextForButtonValue = true;
+                int columnIndex = 7;
+                if (dgvMeals.Columns["Yemek Güncelle"] == null)
+                {
+                    dgvMeals.Columns.Insert(columnIndex, updateButton);
+                }
+
+                dgvMeals.CellClick += dgvMeals_CellClick;
+
+            }
+
         }
 
+        private void dgvMeals_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Eğer tıklanan sütun "Yemek Sil" butonu ise
+            if (e.ColumnIndex == dgvMeals.Columns["Yemek Sil"].Index)
+            {
+                // Geçerli satırın geçerli olup olmadığını kontrol et
+                if (e.RowIndex >= 0 && e.RowIndex < dgvMeals.Rows.Count)
+                {
+                    // Seçilen satırdaki nesneyi al
+                    var selectedRow = dgvMeals.Rows[e.RowIndex];
+                    var meal = (FoodEntryMealDto)selectedRow.DataBoundItem;
 
+                    if (meal != null)
+                    {
+                        // Silme işlemi (veri kaynağından ve/veya veritabanından)
+                        _foodEntryService.DeleteFoodEntryMeal(meal.Id);
 
+                        // DataGridView'ı tekrar yükleyin
+                        LoadFoodEntryMeals();
 
+                       
+                    }
+                }
+            }
+         
 
+        }
 
     }
-
 
 
     class MealTypeComboBoxModel
@@ -218,4 +273,7 @@ namespace BiteSizedDietPlan
         public string Text { get; set; }
         public MealType Value { get; set; }
     }
+
 }
+
+

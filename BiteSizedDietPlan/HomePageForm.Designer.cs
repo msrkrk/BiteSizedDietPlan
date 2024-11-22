@@ -106,6 +106,7 @@
             dgvMeals.RowHeadersWidth = 82;
             dgvMeals.Size = new Size(2415, 865);
             dgvMeals.TabIndex = 2;
+            dgvMeals.CellClick += dgvMeals_CellClick;
             // 
             // tableLayoutPanelL3
             // 

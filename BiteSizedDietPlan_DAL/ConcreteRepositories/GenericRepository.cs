@@ -35,7 +35,7 @@ namespace BiteSizedDietPlan_DAL.ConcreteRepositories
             var entry = _entities.Remove(entity);
             _context.SaveChanges();
 
-            entry.State = EntityState.Detached;
+
         }
 
         public List<T> GetAll()

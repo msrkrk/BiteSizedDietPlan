@@ -19,5 +19,7 @@ namespace BiteSizedDietPlan_BLL.AbstractServices
         void AddFoodEntryMeal(FoodEntryMealDto foodEntryMealDto);
 
         void UpdateFoodEntryMeal(FoodEntryMealDto foodEntryMealDto);
+
+        void DeleteFoodEntryMeal(int id);
     }
 }
