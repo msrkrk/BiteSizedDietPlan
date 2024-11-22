@@ -18,6 +18,11 @@ namespace BiteSizedDietPlan_BLL.Dtos.MealDtos
 
             public List<FoodEntryMealDto> FoodEntryMeals { get; set; }
             public string ImagePath { get; set; }
- 
+
+        public override string ToString()
+        {
+            return Name;
+        }
+
     }
 }

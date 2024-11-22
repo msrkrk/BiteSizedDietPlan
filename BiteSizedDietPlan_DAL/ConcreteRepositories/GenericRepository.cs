@@ -13,8 +13,8 @@ namespace BiteSizedDietPlan_DAL.ConcreteRepositories
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : BaseClass
     {
-        private readonly AppDbContext _context;
-        private readonly DbSet<T> _entities;
+        protected readonly AppDbContext _context;
+        protected readonly DbSet<T> _entities;
 
         public GenericRepository(AppDbContext context)
         {
@@ -22,14 +22,14 @@ namespace BiteSizedDietPlan_DAL.ConcreteRepositories
             _entities = _context.Set<T>();
         }
 
-        public void Add(T entity)
+        public virtual void Add(T entity)
         {
             var entry = _entities.Add(entity);
             _context.SaveChanges();
             entry.State = EntityState.Detached;
         }
 
-        public void Delete(int id)
+        public virtual void Delete(int id)
         {
             var entity = GetById(id);
             var entry = _entities.Remove(entity);
@@ -37,22 +37,22 @@ namespace BiteSizedDietPlan_DAL.ConcreteRepositories
             entry.State = EntityState.Detached;
         }
 
-        public List<T> GetAll()
+        public virtual List<T> GetAll()
         {
             return _entities.AsNoTracking().ToList();
         }
 
-        public List<T> GetAll(Expression<Func<T,bool>> predicate)
+        public virtual List<T> GetAll(Expression<Func<T,bool>> predicate)
         {
             return _entities.AsNoTracking().Where(predicate).ToList();
         }
 
-        public T GetById(int id)
+        public virtual T GetById(int id)
         {
             return _entities.AsNoTracking().FirstOrDefault(x => x.Id == id);
         }
 
-        public void Update(T entity)
+        public virtual void Update(T entity)
         {
             var entry = _entities.Update(entity);
             _context.SaveChanges();

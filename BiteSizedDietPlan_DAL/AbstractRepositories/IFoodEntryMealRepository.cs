@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BiteSizedDietPlan_DAL.AbstractRepositories
 {
-    public interface IMealRepository<T> where T : Meal
+    public interface IFoodEntryMealRepository : IGenericRepository<FoodEntryMeal>
     {
         
     }

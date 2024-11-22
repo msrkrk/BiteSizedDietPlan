@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BiteSizedDietPlan.Models.MealViewModels;
 using BiteSizedDietPlan.Models.UserViewModels;
+using BiteSizedDietPlan_BLL;
 using BiteSizedDietPlan_BLL.AbstractServices;
 using BiteSizedDietPlan_BLL.ConcreteServices;
 using BiteSizedDietPlan_BLL.Dtos.MealDtos;
@@ -43,6 +44,8 @@ namespace BiteSizedDietPlan
             dgvFoodEntry.Columns[2].Visible = false;
             dgvFoodEntry.Columns[4].Visible = false;
             dgvFoodEntry.Columns[3].Visible = false;
+
+            
 
         }
 
@@ -147,20 +150,14 @@ namespace BiteSizedDietPlan
         {
             foreach (MealType mealType in Enum.GetValues(typeof(MealType)))
             {
-                cmbMealType.Items.Add(new MealTypeComboBoxModel { Text = GetDescription(mealType), Value = mealType });
+                cmbMealType.Items.Add(new MealTypeComboBoxModel { Text = Helpers.GetEnumDescription(mealType), Value = mealType });
             }
 
             cmbMealType.DisplayMember = "Text"; // Gösterilecek metin
             cmbMealType.ValueMember = "Value";  // Arka planda tutulan değer
         }
 
-        public static string GetDescription(Enum value)
-        {
-            FieldInfo field = value.GetType().GetField(value.ToString());
-            DescriptionAttribute attribute = (DescriptionAttribute)Attribute.GetCustomAttribute(field, typeof(DescriptionAttribute));
-
-            return attribute == null ? value.ToString() : attribute.Description;
-        }
+       
 
         private void btnAddFoodEntryMeal_Click(object sender, EventArgs e)
         {
@@ -273,6 +270,11 @@ namespace BiteSizedDietPlan
                 }
 
             }
+
+            dgvMeals.Columns["FoodEntryId"].Visible = false;
+            dgvMeals.Columns["MealId"].Visible = false;
+            dgvMeals.Columns["Id"].Visible = false;
+            dgvMeals.Columns["CreatedDate"].Visible = false;
 
         }
 
