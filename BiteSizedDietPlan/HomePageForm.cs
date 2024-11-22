@@ -129,6 +129,18 @@ namespace BiteSizedDietPlan
             var foodEntries = _foodEntryService.GetDailyFoodEntriesOfUser(userId, date);
 
             dgvFoodEntry.DataSource = foodEntries;
+
+            DataGridViewButtonColumn deleteButton = new DataGridViewButtonColumn();
+            {
+                deleteButton.Name = "Öğün Sil";
+                deleteButton.Text = "SİL";
+                deleteButton.UseColumnTextForButtonValue = true;
+                int columnIndex = 6;
+                if (dgvFoodEntry.Columns["Öğün Sil"] == null)
+                {
+                    dgvFoodEntry.Columns.Insert(columnIndex, deleteButton);
+                }
+            }
         }
 
         private void ShowMealTypes()
@@ -188,6 +200,18 @@ namespace BiteSizedDietPlan
 
         private void dgvFoodEntry_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            var foodEntry = (FoodEntryDto)dgvFoodEntry.Rows[e.RowIndex].DataBoundItem;
+            if (e.ColumnIndex == dgvFoodEntry.Columns["Öğün Sil"].Index)
+            {
+                _foodEntryService.DeleteFoodEntry(foodEntry.Id);
+                LoadFoodEntries();
+                ResetFoodEnryMealDgv();
+
+
+                return;
+            }
+
+
             if (e.RowIndex >= 0) // Başlık hücresini kontrol etmek için
             {
                 // Tıklanan satır
@@ -198,6 +222,13 @@ namespace BiteSizedDietPlan
 
                 LoadFoodEntryMeals();
             }
+
+        }
+
+        private void ResetFoodEnryMealDgv()
+        {
+            _selectedFoodEntryId = 0;
+            dgvMeals.DataSource = new List<FoodEntryMealDto>();
         }
 
         private void LoadFoodEntryMeals()
@@ -215,18 +246,30 @@ namespace BiteSizedDietPlan
                 {
                     dgvMeals.Columns.Insert(columnIndex, deleteButton);
                 }
+            }
+
+            DataGridViewButtonColumn increaseButton = new DataGridViewButtonColumn();
+            {
+                increaseButton.Name = "Porsiyon Arttır";
+                increaseButton.Text = "+";
+                increaseButton.UseColumnTextForButtonValue = true;
+                int columnIndex = 7;
+                if (dgvMeals.Columns["Porsiyon Arttır"] == null)
+                {
+                    dgvMeals.Columns.Insert(columnIndex, increaseButton);
+                }
 
             }
 
-            DataGridViewButtonColumn updateButton = new DataGridViewButtonColumn();
+            DataGridViewButtonColumn decreaseButton = new DataGridViewButtonColumn();
             {
-                updateButton.Name = "Yemek Güncelle";
-                updateButton.Text = "GÜNCELLE";
-                updateButton.UseColumnTextForButtonValue = true;
-                int columnIndex = 7;
-                if (dgvMeals.Columns["Yemek Güncelle"] == null)
+                decreaseButton.Name = "Porsiyon Azalt";
+                decreaseButton.Text = "-";
+                decreaseButton.UseColumnTextForButtonValue = true;
+                int columnIndex = 8;
+                if (dgvMeals.Columns["Porsiyon Azalt"] == null)
                 {
-                    dgvMeals.Columns.Insert(columnIndex, updateButton);
+                    dgvMeals.Columns.Insert(columnIndex, decreaseButton);
                 }
 
             }
@@ -239,6 +282,26 @@ namespace BiteSizedDietPlan
             if(e.ColumnIndex == dgvMeals.Columns["Yemek Sil"].Index)
             {
                 _foodEntryService.DeleteFoodEntryMeal(meal.Id);
+            }
+            if(e.ColumnIndex == dgvMeals.Columns["Porsiyon Arttır"].Index)
+            {
+                meal.Portion++;
+                _foodEntryService.UpdateFoodEntryMeal(meal);
+            }
+            if (e.ColumnIndex == dgvMeals.Columns["Porsiyon Azalt"].Index)
+            {
+                meal.Portion--;
+
+
+                if (meal.Portion == 0)
+                {
+                    _foodEntryService.DeleteFoodEntryMeal(meal.Id);
+                }
+                else
+                {
+                    _foodEntryService.UpdateFoodEntryMeal(meal);
+                }
+              
             }
             LoadFoodEntryMeals();
 

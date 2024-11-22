@@ -35,6 +35,11 @@ namespace BiteSizedDietPlan_BLL.ConcreteServices
             _foodEntryMealRepository.Add(_mapper.Map<FoodEntryMeal>(foodEntryMealDto));
         }
 
+        public void DeleteFoodEntry(int id)
+        {
+            _foodEntryRepository.Delete(id);
+        }
+
         public void DeleteFoodEntryMeal(int id)
         {
             _foodEntryMealRepository.Delete(id);
