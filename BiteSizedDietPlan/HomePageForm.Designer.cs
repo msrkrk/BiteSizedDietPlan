@@ -38,17 +38,20 @@
             btnComparisonReport = new Button();
             btnEndofDayReport = new Button();
             tableLayoutPanel1 = new TableLayoutPanel();
-            dgvFoodEntry = new DataGridView();
             tableLayoutPanel2 = new TableLayoutPanel();
             dateTimePicker = new DateTimePicker();
-            cmbAddFoodEntry = new ComboBox();
+            flowLayoutPanel1 = new FlowLayoutPanel();
+            cmbMealType = new ComboBox();
+            btnAddFoodEntryMeal = new Button();
+            dgvFoodEntry = new DataGridView();
             tableLayoutPanelBase.SuspendLayout();
             tableLayoutPanel2L.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvMeals).BeginInit();
             tableLayoutPanelL3.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvFoodEntry).BeginInit();
             tableLayoutPanel2.SuspendLayout();
+            flowLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvFoodEntry).BeginInit();
             SuspendLayout();
             // 
             // tableLayoutPanelBase
@@ -188,8 +191,8 @@
             // 
             tableLayoutPanel1.ColumnCount = 1;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Controls.Add(dgvFoodEntry, 0, 1);
             tableLayoutPanel1.Controls.Add(tableLayoutPanel2, 0, 0);
+            tableLayoutPanel1.Controls.Add(dgvFoodEntry, 0, 1);
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(3, 3);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -199,28 +202,18 @@
             tableLayoutPanel1.Size = new Size(2415, 865);
             tableLayoutPanel1.TabIndex = 1;
             // 
-            // dgvFoodEntry
-            // 
-            dgvFoodEntry.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvFoodEntry.Dock = DockStyle.Fill;
-            dgvFoodEntry.Location = new Point(3, 59);
-            dgvFoodEntry.Name = "dgvFoodEntry";
-            dgvFoodEntry.RowHeadersWidth = 82;
-            dgvFoodEntry.Size = new Size(2409, 803);
-            dgvFoodEntry.TabIndex = 0;
-            // 
             // tableLayoutPanel2
             // 
             tableLayoutPanel2.ColumnCount = 2;
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel2.Controls.Add(dateTimePicker, 0, 0);
-            tableLayoutPanel2.Controls.Add(cmbAddFoodEntry, 1, 0);
+            tableLayoutPanel2.Controls.Add(flowLayoutPanel1, 1, 0);
             tableLayoutPanel2.Dock = DockStyle.Fill;
             tableLayoutPanel2.Location = new Point(3, 3);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.RowCount = 1;
-            tableLayoutPanel2.RowStyles.Add(new RowStyle());
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 80F));
             tableLayoutPanel2.Size = new Size(2409, 50);
             tableLayoutPanel2.TabIndex = 1;
             // 
@@ -233,15 +226,44 @@
             dateTimePicker.TabIndex = 0;
             dateTimePicker.ValueChanged += dateTimePicker_ValueChanged;
             // 
-            // cmbAddFoodEntry
+            // flowLayoutPanel1
             // 
-            cmbAddFoodEntry.Dock = DockStyle.Fill;
-            cmbAddFoodEntry.FormattingEnabled = true;
-            cmbAddFoodEntry.Location = new Point(1207, 3);
-            cmbAddFoodEntry.Name = "cmbAddFoodEntry";
-            cmbAddFoodEntry.Size = new Size(1199, 40);
-            cmbAddFoodEntry.TabIndex = 1;
-            cmbAddFoodEntry.Text = "Lütfen yemek girişi yapmak istediğiniz öğünü seçiniz.";
+            flowLayoutPanel1.Controls.Add(cmbMealType);
+            flowLayoutPanel1.Controls.Add(btnAddFoodEntryMeal);
+            flowLayoutPanel1.Location = new Point(1207, 3);
+            flowLayoutPanel1.Name = "flowLayoutPanel1";
+            flowLayoutPanel1.Size = new Size(1091, 47);
+            flowLayoutPanel1.TabIndex = 1;
+            // 
+            // cmbMealType
+            // 
+            cmbMealType.FormattingEnabled = true;
+            cmbMealType.Location = new Point(3, 3);
+            cmbMealType.Name = "cmbMealType";
+            cmbMealType.Size = new Size(360, 40);
+            cmbMealType.TabIndex = 5;
+            cmbMealType.Text = "Lütfen yemek girişi yapmak istediğiniz öğünü seçiniz.";
+            // 
+            // btnAddFoodEntryMeal
+            // 
+            btnAddFoodEntryMeal.Location = new Point(369, 3);
+            btnAddFoodEntryMeal.Name = "btnAddFoodEntryMeal";
+            btnAddFoodEntryMeal.Size = new Size(150, 44);
+            btnAddFoodEntryMeal.TabIndex = 4;
+            btnAddFoodEntryMeal.Text = "Ekle";
+            btnAddFoodEntryMeal.UseVisualStyleBackColor = true;
+            btnAddFoodEntryMeal.Click += btnAddFoodEntryMeal_Click;
+            // 
+            // dgvFoodEntry
+            // 
+            dgvFoodEntry.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvFoodEntry.Dock = DockStyle.Fill;
+            dgvFoodEntry.Location = new Point(3, 59);
+            dgvFoodEntry.Name = "dgvFoodEntry";
+            dgvFoodEntry.RowHeadersWidth = 82;
+            dgvFoodEntry.Size = new Size(2409, 803);
+            dgvFoodEntry.TabIndex = 3;
+            dgvFoodEntry.CellClick += dgvFoodEntry_CellClick;
             // 
             // HomePageForm
             // 
@@ -262,8 +284,9 @@
             ((System.ComponentModel.ISupportInitialize)dgvMeals).EndInit();
             tableLayoutPanelL3.ResumeLayout(false);
             tableLayoutPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dgvFoodEntry).EndInit();
             tableLayoutPanel2.ResumeLayout(false);
+            flowLayoutPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dgvFoodEntry).EndInit();
             ResumeLayout(false);
         }
 
@@ -277,10 +300,12 @@
         private Button btnComparisonReport;
         private Button btnEndofDayReport;
         private TableLayoutPanel tableLayoutPanel1;
-        private DataGridView dgvFoodEntry;
         private TableLayoutPanel tableLayoutPanel2;
         private DateTimePicker dateTimePicker;
         private DataGridView dgvMeals;
-        private ComboBox cmbAddFoodEntry;
+        private DataGridView dgvFoodEntry;
+        private Button btnAddFoodEntryMeal;
+        private FlowLayoutPanel flowLayoutPanel1;
+        private ComboBox cmbMealType;
     }
 }

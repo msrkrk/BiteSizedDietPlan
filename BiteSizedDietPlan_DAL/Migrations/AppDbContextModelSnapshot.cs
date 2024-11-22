@@ -51,19 +51,24 @@ namespace BiteSizedDietPlan_DAL.Migrations
 
             modelBuilder.Entity("BiteSizedDietPlan_DAL.Entities.FoodEntryMeal", b =>
                 {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("FoodEntryId")
                         .HasColumnType("int");
 
                     b.Property<int>("MealId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                    b.HasKey("Id");
 
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
-
-                    b.HasKey("FoodEntryId", "MealId");
+                    b.HasIndex("FoodEntryId");
 
                     b.HasIndex("MealId");
 

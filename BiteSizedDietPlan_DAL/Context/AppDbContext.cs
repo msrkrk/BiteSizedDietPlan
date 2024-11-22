@@ -34,10 +34,6 @@ namespace BiteSizedDietPlan_DAL.Context
                 .WithMany(c => c.Meals)
                 .HasForeignKey(m => m.MealCategoryId);
 
-            // FoodEntryMeal için composite primary key tanımlandı.
-            modelBuilder.Entity<FoodEntryMeal>()
-                .HasKey(fem => new { fem.FoodEntryId, fem.MealId });
-
             // User - FoodEntry: 1-M İlişki
             modelBuilder.Entity<FoodEntry>()
                 .HasOne(fe => fe.User)

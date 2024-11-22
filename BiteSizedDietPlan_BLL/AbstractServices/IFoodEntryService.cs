@@ -11,5 +11,11 @@ namespace BiteSizedDietPlan_BLL.AbstractServices
     public interface IFoodEntryService
     {
         List<FoodEntryDto> GetDailyFoodEntriesOfUser(int userId, DateTime date);
+
+        void AddFoodEntry(FoodEntryDto foodEntryDto);
+
+        List<FoodEntryMealDto> GetFoodEntryMeals(int foodEntryId);
+
+        void AddFoodEntryMeal(FoodEntryMealDto foodEntryMealDto);
     }
 }

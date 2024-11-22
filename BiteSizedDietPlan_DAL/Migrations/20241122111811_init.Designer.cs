@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BiteSizedDietPlan_DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241121143939_mealpicadd")]
-    partial class mealpicadd
+    [Migration("20241122111811_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -36,6 +36,9 @@ namespace BiteSizedDietPlan_DAL.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("MealType")
                         .HasColumnType("int");
 
@@ -51,19 +54,24 @@ namespace BiteSizedDietPlan_DAL.Migrations
 
             modelBuilder.Entity("BiteSizedDietPlan_DAL.Entities.FoodEntryMeal", b =>
                 {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("FoodEntryId")
                         .HasColumnType("int");
 
                     b.Property<int>("MealId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                    b.HasKey("Id");
 
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
-
-                    b.HasKey("FoodEntryId", "MealId");
+                    b.HasIndex("FoodEntryId");
 
                     b.HasIndex("MealId");
 
@@ -107,7 +115,7 @@ namespace BiteSizedDietPlan_DAL.Migrations
                             Id = 1,
                             Calorie = 250,
                             CreatedDate = new DateTime(2024, 11, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImagePath = "\"C:\\Users\\msrkrk\\source\\repos\\BiteSizedDietPlan\\BiteSizedDietPlan\\Resources\\1.jpg\"",
+                            ImagePath = "C:\\Users\\msrkrk\\source\\repos\\BiteSizedDietPlan\\BiteSizedDietPlan\\Resources\\1.jpg",
                             MealCategoryId = 1,
                             Name = "Yulaf Ezmesi ve Meyve"
                         },
@@ -116,7 +124,7 @@ namespace BiteSizedDietPlan_DAL.Migrations
                             Id = 2,
                             Calorie = 200,
                             CreatedDate = new DateTime(2024, 11, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImagePath = "\"C:\\Users\\msrkrk\\source\\repos\\BiteSizedDietPlan\\BiteSizedDietPlan\\Resources\\1.jpg\"",
+                            ImagePath = "C:\\Users\\msrkrk\\source\\repos\\BiteSizedDietPlan\\BiteSizedDietPlan\\Resources\\1.jpg",
                             MealCategoryId = 1,
                             Name = "Peynirli Omlet"
                         },
@@ -125,7 +133,7 @@ namespace BiteSizedDietPlan_DAL.Migrations
                             Id = 3,
                             Calorie = 300,
                             CreatedDate = new DateTime(2024, 11, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImagePath = "\"C:\\Users\\msrkrk\\source\\repos\\BiteSizedDietPlan\\BiteSizedDietPlan\\Resources\\1.jpg\"",
+                            ImagePath = "C:\\Users\\msrkrk\\source\\repos\\BiteSizedDietPlan\\BiteSizedDietPlan\\Resources\\1.jpg",
                             MealCategoryId = 1,
                             Name = "Tam Tahıllı Tost"
                         },
@@ -134,7 +142,7 @@ namespace BiteSizedDietPlan_DAL.Migrations
                             Id = 4,
                             Calorie = 250,
                             CreatedDate = new DateTime(2024, 11, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImagePath = "\"C:\\Users\\msrkrk\\source\\repos\\BiteSizedDietPlan\\BiteSizedDietPlan\\Resources\\1.jpg\"",
+                            ImagePath = "C:\\Users\\msrkrk\\source\\repos\\BiteSizedDietPlan\\BiteSizedDietPlan\\Resources\\1.jpg",
                             MealCategoryId = 1,
                             Name = "Avokadolu Tam Tahıllı Ekmek"
                         },
@@ -143,7 +151,7 @@ namespace BiteSizedDietPlan_DAL.Migrations
                             Id = 5,
                             Calorie = 270,
                             CreatedDate = new DateTime(2024, 11, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImagePath = "\"C:\\Users\\msrkrk\\source\\repos\\BiteSizedDietPlan\\BiteSizedDietPlan\\Resources\\1.jpg\"",
+                            ImagePath = "C:\\Users\\msrkrk\\source\\repos\\BiteSizedDietPlan\\BiteSizedDietPlan\\Resources\\1.jpg",
                             MealCategoryId = 1,
                             Name = "Sebzeli Gözleme"
                         },
@@ -152,7 +160,7 @@ namespace BiteSizedDietPlan_DAL.Migrations
                             Id = 6,
                             Calorie = 200,
                             CreatedDate = new DateTime(2024, 11, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImagePath = "\"C:\\Users\\msrkrk\\source\\repos\\BiteSizedDietPlan\\BiteSizedDietPlan\\Resources\\1.jpg\"",
+                            ImagePath = "C:\\Users\\msrkrk\\source\\repos\\BiteSizedDietPlan\\BiteSizedDietPlan\\Resources\\1.jpg",
                             MealCategoryId = 1,
                             Name = "Yoğurtlu Meyve Kasesi"
                         },
@@ -161,7 +169,7 @@ namespace BiteSizedDietPlan_DAL.Migrations
                             Id = 7,
                             Calorie = 220,
                             CreatedDate = new DateTime(2024, 11, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImagePath = "\"C:\\Users\\msrkrk\\source\\repos\\BiteSizedDietPlan\\BiteSizedDietPlan\\Resources\\1.jpg\"",
+                            ImagePath = "C:\\Users\\msrkrk\\source\\repos\\BiteSizedDietPlan\\BiteSizedDietPlan\\Resources\\1.jpg",
                             MealCategoryId = 1,
                             Name = "Sebzeli Omlet"
                         },
@@ -170,7 +178,7 @@ namespace BiteSizedDietPlan_DAL.Migrations
                             Id = 8,
                             Calorie = 280,
                             CreatedDate = new DateTime(2024, 11, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImagePath = "\"C:\\Users\\msrkrk\\source\\repos\\BiteSizedDietPlan\\BiteSizedDietPlan\\Resources\\1.jpg\"",
+                            ImagePath = "C:\\Users\\msrkrk\\source\\repos\\BiteSizedDietPlan\\BiteSizedDietPlan\\Resources\\1.jpg",
                             MealCategoryId = 1,
                             Name = "Zeytinli ve Peynirli Sandviç"
                         },

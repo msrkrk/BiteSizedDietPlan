@@ -13,20 +13,39 @@ namespace BiteSizedDietPlan_BLL.ConcreteServices
 {
     public class FoodEntryService : IFoodEntryService
     {
-        private readonly IGenericRepository<FoodEntry> _genericRepository;
+        private readonly IGenericRepository<FoodEntry> _foodEntryRepository;
         private readonly IMapper _mapper;
+        private readonly IGenericRepository<FoodEntryMeal> _foodEntryMealRepository;
 
-        public FoodEntryService(IGenericRepository<FoodEntry> genericRepository, IMapper mapper)
+        public FoodEntryService(IGenericRepository<FoodEntry> foodEntryRepository, IMapper mapper, IGenericRepository<FoodEntryMeal> foodEntryMealRepository)
         {
-            _genericRepository = genericRepository;
+            _foodEntryRepository = foodEntryRepository;
             _mapper = mapper;
+            _foodEntryMealRepository = foodEntryMealRepository;
+        }
+
+        public void AddFoodEntry(FoodEntryDto foodEntryDto)
+        {
+            _foodEntryRepository.Add(_mapper.Map<FoodEntry>(foodEntryDto));
+        }
+
+        public void AddFoodEntryMeal(FoodEntryMealDto foodEntryMealDto)
+        {
+            _foodEntryMealRepository.Add(_mapper.Map<FoodEntryMeal>(foodEntryMealDto));
         }
 
         public List<FoodEntryDto> GetDailyFoodEntriesOfUser(int userId, DateTime date)
         {
-            var foodEntries = _genericRepository.GetAll(x=> x.UserId == userId && x.Date.Date == date.Date);
+            var foodEntries = _foodEntryRepository.GetAll(x=> x.UserId == userId && x.Date.Date == date.Date);
 
             return foodEntries.Select(x=>_mapper.Map<FoodEntryDto>(x)).ToList();
+        }
+
+        public List<FoodEntryMealDto> GetFoodEntryMeals(int foodEntryId)
+        {
+            var foodEntryMeals = _foodEntryMealRepository.GetAll(x => x.FoodEntryId == foodEntryId);
+
+            return foodEntryMeals.Select(x => _mapper.Map<FoodEntryMealDto>(x)).ToList();
         }
     }
 }

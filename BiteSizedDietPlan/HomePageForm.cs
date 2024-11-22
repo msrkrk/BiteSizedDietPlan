@@ -2,6 +2,7 @@
 using BiteSizedDietPlan.Models.MealViewModels;
 using BiteSizedDietPlan.Models.UserViewModels;
 using BiteSizedDietPlan_BLL.AbstractServices;
+using BiteSizedDietPlan_BLL.Dtos.MealDtos;
 using BiteSizedDietPlan_DAL.Entities;
 using BiteSizedDietPlan_DAL.Enums;
 using System;
@@ -23,10 +24,8 @@ namespace BiteSizedDietPlan
         private readonly IMapper _mapper;
         private readonly IMealService _mealService;
         private readonly IFoodEntryService _foodEntryService;
-     
-        FoodEntryViewModel choosenFoodEntry;
-        MealViewModel choosenMeal;
-        FoodEntryMealViewModel choosenFoodEntryMeal;
+
+        private int _selectedFoodEntryId;
 
 
         public HomePageForm(IMapper mapper, IMealService mealService, UserViewModel user, IFoodEntryService foodEntryService)
@@ -36,10 +35,10 @@ namespace BiteSizedDietPlan
             _mealService = mealService;
             _user = user;
             _foodEntryService = foodEntryService;
-        
+
             LoadMeals();
             LoadFoodEntries();
-            ShowFoodEntries();
+            ShowMealTypes();
         }
 
 
@@ -77,7 +76,17 @@ namespace BiteSizedDietPlan
                 // Butona tıklandığında yapılacak işlemi belirle
                 mealButton.Click += (sender, e) =>
                 {
-                    MessageBox.Show($"Yemek seçildi: {meal.Name}");
+                    FoodEntryMealViewModel foodEntryMeal = new FoodEntryMealViewModel()
+                    {
+                      FoodEntryId = _selectedFoodEntryId,
+                      MealId = meal.Id,
+                    };
+
+                    _foodEntryService.AddFoodEntryMeal(_mapper.Map<FoodEntryMealDto>(foodEntryMeal));
+
+                    LoadFoodEntryMeals();
+
+
                 };
 
                 // Butonu FlowLayoutPanel'e ekle
@@ -100,33 +109,101 @@ namespace BiteSizedDietPlan
             var date = dateTimePicker.Value;
             var userId = _user.Id;
 
-            var foodEntries = _foodEntryService.GetDailyFoodEntriesOfUser(userId,date);
+            var foodEntries = _foodEntryService.GetDailyFoodEntriesOfUser(userId, date);
 
             dgvFoodEntry.DataSource = foodEntries;
         }
 
-        private void ShowFoodEntries()
+        private void ShowMealTypes()
         {
             foreach (MealType mealType in Enum.GetValues(typeof(MealType)))
             {
-                cmbAddFoodEntry.Items.Add(new { Text = GetDescription(mealType), Value = mealType });
+                cmbMealType.Items.Add(new MealTypeComboBoxModel { Text = GetDescription(mealType), Value = mealType });
             }
 
-            cmbAddFoodEntry.DisplayMember = "Text"; // Gösterilecek metin
-            cmbAddFoodEntry.ValueMember = "Value";  // Arka planda tutulan değer
+            cmbMealType.DisplayMember = "Text"; // Gösterilecek metin
+            cmbMealType.ValueMember = "Value";  // Arka planda tutulan değer
         }
 
         public static string GetDescription(Enum value)
         {
             FieldInfo field = value.GetType().GetField(value.ToString());
-            DescriptionAttribute attribute =
-                (DescriptionAttribute)Attribute.GetCustomAttribute(field, typeof(DescriptionAttribute));
+            DescriptionAttribute attribute = (DescriptionAttribute)Attribute.GetCustomAttribute(field, typeof(DescriptionAttribute));
 
             return attribute == null ? value.ToString() : attribute.Description;
+        }
+
+        private void btnAddFoodEntryMeal_Click(object sender, EventArgs e)
+        {
+            var selected = cmbMealType.SelectedItem as MealTypeComboBoxModel;
+
+            if (selected == null)
+            {
+                MessageBox.Show("Lütfen önce öğün tipi seçin.");
+                return;
+            }
+
+            var date = dateTimePicker.Value;
+            var mealType = selected.Value;
+            var userId = _user.Id;
+
+            var foodEntries = (dgvFoodEntry.DataSource as List<FoodEntryDto>)!;
+
+            var isAlreadyAdded = foodEntries.Where(x => x.Date.Date == date.Date && x.MealType == mealType).Any();
+
+            if (isAlreadyAdded)
+            {
+                MessageBox.Show($"Seçilen gün için {selected.Text} öğünü zaten mevcut.");
+                return;
+            }
+
+            FoodEntryDto foodEntry = new FoodEntryDto()
+            {
+                Date = date.Date,
+                MealType = mealType,
+                UserId = userId,
+            };
+
+            _foodEntryService.AddFoodEntry(foodEntry);
+
+            LoadFoodEntries();
+        }
+
+        private void dgvFoodEntry_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0) // Başlık hücresini kontrol etmek için
+            {
+                // Tıklanan satır
+                DataGridViewRow selectedRow = dgvFoodEntry.Rows[e.RowIndex];
+
+                // Satırdan veri alma
+                _selectedFoodEntryId = (int)selectedRow.Cells["Id"].Value;
+   
+
+                LoadFoodEntryMeals();
+
+
+            }
+        }
+
+        private void LoadFoodEntryMeals()
+        {
+            var foodEntries = _foodEntryService.GetFoodEntryMeals(_selectedFoodEntryId);
+            dgvMeals.DataSource = foodEntries;
         }
 
 
 
 
+
+
+    }
+
+
+
+    class MealTypeComboBoxModel
+    {
+        public string Text { get; set; }
+        public MealType Value { get; set; }
     }
 }
