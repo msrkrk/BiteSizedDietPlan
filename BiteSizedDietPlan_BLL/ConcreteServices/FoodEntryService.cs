@@ -13,12 +13,12 @@ namespace BiteSizedDietPlan_BLL.ConcreteServices
 {
     public class FoodEntryService : IFoodEntryService
     {
-        private readonly IGenericRepository<FoodEntry> _foodEntryRepository;
+        private readonly IFoodEntryRepository _foodEntryRepository;
         private readonly IMapper _mapper;
         private readonly IFoodEntryMealRepository _foodEntryMealRepository;
         private readonly FoodEntryDto _foodEntryDto;
 
-        public FoodEntryService(IGenericRepository<FoodEntry> foodEntryRepository, IMapper mapper, IFoodEntryMealRepository foodEntryMealRepository)
+        public FoodEntryService(IFoodEntryRepository foodEntryRepository, IMapper mapper, IFoodEntryMealRepository foodEntryMealRepository)
         {
             _foodEntryRepository = foodEntryRepository;
             _mapper = mapper;

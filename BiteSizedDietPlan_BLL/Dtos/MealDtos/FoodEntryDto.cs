@@ -22,6 +22,8 @@ namespace BiteSizedDietPlan_BLL.Dtos.MealDtos
 
         public List<FoodEntryMealDto> FoodEntryMeals { get; set; }
 
+        public int Calorie { get; set; }
+
         public override string ToString()
         {
             return Helpers.GetEnumDescription(MealType);
