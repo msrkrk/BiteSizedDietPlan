@@ -15,5 +15,7 @@ namespace BiteSizedDietPlan_BLL.Dtos.MealDtos
 
         public int MealId { get; set; }
         public MealDto Meal { get; set; }
+
+        public int Calorie { get; set; }
     }
 }

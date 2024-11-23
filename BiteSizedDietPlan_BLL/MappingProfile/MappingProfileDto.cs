@@ -19,7 +19,8 @@ namespace BiteSizedDietPlan_BLL.MappingProfile
             CreateMap<LoginUserDto, User>().ReverseMap();
             CreateMap<RegisterUserDto, User>().ReverseMap();
             CreateMap<FoodEntryDto, FoodEntry>().ReverseMap();
-            CreateMap<FoodEntryMealDto, FoodEntryMeal>().ReverseMap();
+            CreateMap<FoodEntryMealDto, FoodEntryMeal>().ReverseMap()
+                .ForMember(dest => dest.Calorie,src => src.MapFrom(x=>x.Meal.Calorie*x.Portion));
             CreateMap<MealCategoryDto, MealCategory>().ReverseMap();
             CreateMap<MealDto, Meal>().ReverseMap();
            
