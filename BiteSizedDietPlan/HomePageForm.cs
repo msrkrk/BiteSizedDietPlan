@@ -57,7 +57,8 @@ namespace BiteSizedDietPlan
             {
                 Button mealButton = new Button();
                 mealButton.Text = meal.Name; // Butonun metni yemek adı
-                mealButton.Size = new Size(180, 180); // Butonun boyutunu ayarla
+                var btnSize = (int)(flpMeals.Width * 0.40);
+                mealButton.Size = new Size(btnSize, btnSize); // Butonun boyutunu ayarla
 
                 // Eğer yemek resmi varsa, resmini ekle
                 if (!string.IsNullOrEmpty(meal.ImagePath))
@@ -164,7 +165,7 @@ namespace BiteSizedDietPlan
             cmbMealType.ValueMember = "Value";  // Arka planda tutulan değer
         }
 
-       
+
 
         private void btnAddFoodEntryMeal_Click(object sender, EventArgs e)
         {
@@ -291,7 +292,7 @@ namespace BiteSizedDietPlan
         private void dgvMeals_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             var meal = (FoodEntryMealDto)dgvMeals.Rows[e.RowIndex].DataBoundItem;
-            if(e.ColumnIndex == dgvMeals.Columns["Yemek Sil"].Index)
+            if (e.ColumnIndex == dgvMeals.Columns["Yemek Sil"].Index)
             {
                 _foodEntryService.DeleteFoodEntryMeal(meal.Id);
                 LoadFoodEntryMeals();
@@ -320,6 +321,12 @@ namespace BiteSizedDietPlan
 
         }
 
+        private void btnEndofDayReport_Click(object sender, EventArgs e)
+        {
+            Form form = new EndOfDayReportForm(_mapper, _foodEntryService,_user);
+            this.Hide();
+            form.ShowDialog();
+        }
     }
     class MealTypeComboBoxModel
     {

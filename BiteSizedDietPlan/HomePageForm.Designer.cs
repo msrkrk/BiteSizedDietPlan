@@ -102,6 +102,7 @@
             // 
             // dgvMeals
             // 
+            dgvMeals.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvMeals.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvMeals.Dock = DockStyle.Fill;
             dgvMeals.Location = new Point(2, 363);
@@ -200,6 +201,7 @@
             btnEndofDayReport.TabIndex = 1;
             btnEndofDayReport.Text = "Gün Sonu Raporunu Görüntüle!";
             btnEndofDayReport.UseVisualStyleBackColor = false;
+            btnEndofDayReport.Click += btnEndofDayReport_Click;
             // 
             // tableLayoutPanel1
             // 
@@ -276,6 +278,7 @@
             // 
             // dgvFoodEntry
             // 
+            dgvFoodEntry.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvFoodEntry.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvFoodEntry.Dock = DockStyle.Fill;
             dgvFoodEntry.Location = new Point(2, 27);
