@@ -37,7 +37,8 @@ namespace BiteSizedDietPlan
             var mealService = new MealService(mealGenericRepository, mapper);
             var foodEntryRepository = new FoodEntryRepository(context);
             var foodEntryMealRepository = new FoodEntryMealRepository(context);
-            var foodEntryService = new FoodEntryService(foodEntryRepository, mapper,foodEntryMealRepository,userRepository);
+            var mealRepository = new MealRepository(context);
+            var foodEntryService = new FoodEntryService(foodEntryRepository, mapper,foodEntryMealRepository,userRepository,mealRepository);
             Application.Run(new LoginForm(userService, mapper, hashService, mealService,foodEntryService));
         }
     }

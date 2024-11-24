@@ -10,6 +10,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BiteSizedDietPlan_DAL.Enums;
+using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.Data.SqlClient;
 
 namespace BiteSizedDietPlan_BLL.MappingProfile
 {
@@ -53,6 +55,11 @@ namespace BiteSizedDietPlan_BLL.MappingProfile
                         )
                     )
                 );
+            CreateMap<Meal, MealConsumptionReportDto>()
+                .ForMember(dest => dest.Meal, src => src.MapFrom(x => x.Name))
+                .ForMember(dest => dest.DinnerPortion, src => src.MapFrom(y => y.FoodEntryMeals
+                .Where(y => y.FoodEntry.MealType == MealType.Dinner)
+                .Sum(y => y.Portion)));
 
 
             CreateMap<MealCategoryDto, MealCategory>().ReverseMap();

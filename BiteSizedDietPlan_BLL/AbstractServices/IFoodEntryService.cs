@@ -26,5 +26,7 @@ namespace BiteSizedDietPlan_BLL.AbstractServices
         void DeleteFoodEntry(int id);
 
         List<GeneralCalorieReportDto> GetGeneralCalorieReportData(DateTime startDate, DateTime endDate);
+
+        List<MealConsumptionReportDto> GetMealConsumptionReportData(DateTime startDate, DateTime endDate);
     }
 }

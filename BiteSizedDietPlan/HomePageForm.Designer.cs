@@ -169,6 +169,7 @@
             btnMealTypeReport.TabIndex = 3;
             btnMealTypeReport.Text = "Yemek Çeşidi Raporunu Görüntüle!";
             btnMealTypeReport.UseVisualStyleBackColor = false;
+            btnMealTypeReport.Click += btnMealTypeReport_Click;
             // 
             // btnComparisonReport
             // 

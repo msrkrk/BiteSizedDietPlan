@@ -18,13 +18,16 @@ namespace BiteSizedDietPlan_BLL.ConcreteServices
         private readonly IMapper _mapper;
         private readonly IFoodEntryMealRepository _foodEntryMealRepository;
         private readonly IUserRepository _userRepository;
+        private readonly IMealRepository _mealRepository;
 
-        public FoodEntryService(IFoodEntryRepository foodEntryRepository, IMapper mapper, IFoodEntryMealRepository foodEntryMealRepository, IUserRepository userRepository)
+
+        public FoodEntryService(IFoodEntryRepository foodEntryRepository, IMapper mapper, IFoodEntryMealRepository foodEntryMealRepository, IUserRepository userRepository, IMealRepository mealRepository)
         {
             _foodEntryRepository = foodEntryRepository;
             _mapper = mapper;
             _foodEntryMealRepository = foodEntryMealRepository;
             _userRepository = userRepository;
+            _mealRepository = mealRepository;
         }
 
         public int AddFoodEntry(FoodEntryDto foodEntryDto)
@@ -64,6 +67,11 @@ namespace BiteSizedDietPlan_BLL.ConcreteServices
         public List<GeneralCalorieReportDto> GetGeneralCalorieReportData(DateTime startDate, DateTime endDate)
         {
             return _userRepository.GetUsersWithFoodEntries(startDate,endDate).Select(x=>_mapper.Map<GeneralCalorieReportDto>(x)).ToList();
+        }
+
+        public List<MealConsumptionReportDto> GetMealConsumptionReportData(DateTime startDate, DateTime endDate)
+        {
+            return _mealRepository.GetMealsWithFoodEntries(startDate,endDate).Select(x=>_mapper.Map<MealConsumptionReportDto>(x)).ToList(); 
         }
 
         public void UpdateFoodEntryMeal(FoodEntryMealDto foodEntryMealDto)
