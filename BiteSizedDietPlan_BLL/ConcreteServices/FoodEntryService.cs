@@ -61,9 +61,9 @@ namespace BiteSizedDietPlan_BLL.ConcreteServices
             return foodEntryMeals.Select(x => _mapper.Map<FoodEntryMealDto>(x)).ToList();
         }
 
-        public List<GeneralCalorieReportDto> GetGeneralCalorieReportData()
+        public List<GeneralCalorieReportDto> GetGeneralCalorieReportData(DateTime startDate, DateTime endDate)
         {
-            return _userRepository.GetAll().Select(x=>_mapper.Map<GeneralCalorieReportDto>(x)).ToList();
+            return _userRepository.GetUsersWithFoodEntries(startDate,endDate).Select(x=>_mapper.Map<GeneralCalorieReportDto>(x)).ToList();
         }
 
         public void UpdateFoodEntryMeal(FoodEntryMealDto foodEntryMealDto)

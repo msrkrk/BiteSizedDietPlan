@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             dgvGeneralCalorieReport = new DataGridView();
-            dateTimePicker1 = new DateTimePicker();
-            dateTimePicker2 = new DateTimePicker();
+            dateTimePickerStart = new DateTimePicker();
+            dateTimePickerEnd = new DateTimePicker();
             label1 = new Label();
             label2 = new Label();
-            button1 = new Button();
+            btnChooseDate = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvGeneralCalorieReport).BeginInit();
             SuspendLayout();
             // 
@@ -45,19 +45,19 @@
             dgvGeneralCalorieReport.Size = new Size(776, 302);
             dgvGeneralCalorieReport.TabIndex = 0;
             // 
-            // dateTimePicker1
+            // dateTimePickerStart
             // 
-            dateTimePicker1.Location = new Point(110, 25);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(200, 23);
-            dateTimePicker1.TabIndex = 1;
+            dateTimePickerStart.Location = new Point(110, 25);
+            dateTimePickerStart.Name = "dateTimePickerStart";
+            dateTimePickerStart.Size = new Size(200, 23);
+            dateTimePickerStart.TabIndex = 1;
             // 
-            // dateTimePicker2
+            // dateTimePickerEnd
             // 
-            dateTimePicker2.Location = new Point(110, 67);
-            dateTimePicker2.Name = "dateTimePicker2";
-            dateTimePicker2.Size = new Size(200, 23);
-            dateTimePicker2.TabIndex = 2;
+            dateTimePickerEnd.Location = new Point(110, 67);
+            dateTimePickerEnd.Name = "dateTimePickerEnd";
+            dateTimePickerEnd.Size = new Size(200, 23);
+            dateTimePickerEnd.TabIndex = 2;
             // 
             // label1
             // 
@@ -77,25 +77,26 @@
             label2.TabIndex = 4;
             label2.Text = "Bitiş Tarihi:";
             // 
-            // button1
+            // btnChooseDate
             // 
-            button1.Location = new Point(110, 107);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 5;
-            button1.Text = "SEÇ";
-            button1.UseVisualStyleBackColor = true;
+            btnChooseDate.Location = new Point(110, 107);
+            btnChooseDate.Name = "btnChooseDate";
+            btnChooseDate.Size = new Size(75, 23);
+            btnChooseDate.TabIndex = 5;
+            btnChooseDate.Text = "SEÇ";
+            btnChooseDate.UseVisualStyleBackColor = true;
+            btnChooseDate.Click += btnChooseDate_Click;
             // 
             // GeneralCalorieReportForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(button1);
+            Controls.Add(btnChooseDate);
             Controls.Add(label2);
             Controls.Add(label1);
-            Controls.Add(dateTimePicker2);
-            Controls.Add(dateTimePicker1);
+            Controls.Add(dateTimePickerEnd);
+            Controls.Add(dateTimePickerStart);
             Controls.Add(dgvGeneralCalorieReport);
             Name = "GeneralCalorieReportForm";
             Text = "GeneralCalorieReportForm";
@@ -107,10 +108,10 @@
         #endregion
 
         private DataGridView dgvGeneralCalorieReport;
-        private DateTimePicker dateTimePicker1;
-        private DateTimePicker dateTimePicker2;
+        private DateTimePicker dateTimePickerStart;
+        private DateTimePicker dateTimePickerEnd;
         private Label label1;
         private Label label2;
-        private Button button1;
+        private Button btnChooseDate;
     }
 }

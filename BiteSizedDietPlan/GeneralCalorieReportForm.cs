@@ -19,14 +19,23 @@ namespace BiteSizedDietPlan
         {
             InitializeComponent();
             _foodEntryService = foodEntryService;
-            LoadReportData();
+            
         }
 
         void LoadReportData()
         {
-            var datas = _foodEntryService.GetGeneralCalorieReportData();
+            DateTime startDate = dateTimePickerStart.Value;
+            DateTime endDate = dateTimePickerEnd.Value;
+
+            var datas = _foodEntryService.GetGeneralCalorieReportData(startDate,endDate);
 
             dgvGeneralCalorieReport.DataSource = datas;
         }
+
+        private void btnChooseDate_Click(object sender, EventArgs e)
+        {
+            LoadReportData();
+        }
     }
+    
 }

@@ -11,7 +11,7 @@ namespace BiteSizedDietPlan_DAL.AbstractRepositories
     {
         User GetUserByEmail(string email);
 
-
+        List<User> GetUsersWithFoodEntries(DateTime start, DateTime end);
 
     }
 }

@@ -44,5 +44,13 @@ namespace BiteSizedDietPlan_DAL.ConcreteRepositories
                 .ToList();
         }
 
+        public List<User> GetUsersWithFoodEntries(DateTime start, DateTime end)
+        {
+            return _entities.AsNoTracking()
+                  .Include(x => x.FoodEntries.Where(y=>start.Date<=y.Date.Date && end.Date >= y.Date.Date))
+                  .ThenInclude(y => y.FoodEntryMeals)
+                  .ThenInclude(x => x.Meal)
+                  .ToList();
+        }
     }
 }
