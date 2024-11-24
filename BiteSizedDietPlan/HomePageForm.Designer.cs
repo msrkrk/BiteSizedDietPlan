@@ -185,6 +185,7 @@
             btnComparisonReport.TabIndex = 2;
             btnComparisonReport.Text = "Kıyas Raporunu Görüntüle!";
             btnComparisonReport.UseVisualStyleBackColor = false;
+            btnComparisonReport.Click += btnComparisonReport_Click;
             // 
             // btnEndofDayReport
             // 

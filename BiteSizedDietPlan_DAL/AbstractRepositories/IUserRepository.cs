@@ -7,9 +7,11 @@ using System.Threading.Tasks;
 
 namespace BiteSizedDietPlan_DAL.AbstractRepositories
 {
-    public interface IUserRepository<T> where T : User
+    public interface IUserRepository : IGenericRepository<User>
     {
         User GetUserByEmail(string email);
+
+
 
     }
 }

@@ -323,8 +323,13 @@ namespace BiteSizedDietPlan
 
         private void btnEndofDayReport_Click(object sender, EventArgs e)
         {
-            Form form = new EndOfDayReportForm(_mapper, _foodEntryService,_user);
-            this.Hide();
+            Form form = new EndOfDayReportForm(_mapper, _foodEntryService, _user);
+            form.ShowDialog();
+        }
+
+        private void btnComparisonReport_Click(object sender, EventArgs e)
+        {
+            Form form = new GeneralCalorieReportForm(_foodEntryService);
             form.ShowDialog();
         }
     }

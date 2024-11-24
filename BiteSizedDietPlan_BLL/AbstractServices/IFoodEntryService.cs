@@ -1,4 +1,5 @@
 ﻿using BiteSizedDietPlan_BLL.Dtos.MealDtos;
+using BiteSizedDietPlan_BLL.Dtos.ReportsDto;
 using BiteSizedDietPlan_DAL.Entities;
 using System;
 using System.Collections.Generic;
@@ -23,5 +24,7 @@ namespace BiteSizedDietPlan_BLL.AbstractServices
         void DeleteFoodEntryMeal(int id);
 
         void DeleteFoodEntry(int id);
+
+        List<GeneralCalorieReportDto> GetGeneralCalorieReportData();
     }
 }

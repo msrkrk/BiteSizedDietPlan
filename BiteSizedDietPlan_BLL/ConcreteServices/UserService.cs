@@ -16,10 +16,10 @@ namespace BiteSizedDietPlan_BLL.ConcreteServices
     {
         private readonly IGenericRepository<User> _genericRepository;
         private readonly IMapper _mapper;
-        private readonly IUserRepository<User> _userRepository;
+        private readonly IUserRepository _userRepository;
        
 
-        public UserService(IGenericRepository<User> genericRepository, IMapper mapper, IUserRepository<User> userRepository)
+        public UserService(IGenericRepository<User> genericRepository, IMapper mapper, IUserRepository userRepository)
         {
             _genericRepository = genericRepository;
             _mapper = mapper;

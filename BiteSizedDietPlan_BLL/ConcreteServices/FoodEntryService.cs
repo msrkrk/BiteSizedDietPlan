@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BiteSizedDietPlan_BLL.AbstractServices;
 using BiteSizedDietPlan_BLL.Dtos.MealDtos;
+using BiteSizedDietPlan_BLL.Dtos.ReportsDto;
 using BiteSizedDietPlan_DAL.AbstractRepositories;
 using BiteSizedDietPlan_DAL.Entities;
 using System;
@@ -16,13 +17,14 @@ namespace BiteSizedDietPlan_BLL.ConcreteServices
         private readonly IFoodEntryRepository _foodEntryRepository;
         private readonly IMapper _mapper;
         private readonly IFoodEntryMealRepository _foodEntryMealRepository;
-        private readonly FoodEntryDto _foodEntryDto;
+        private readonly IUserRepository _userRepository;
 
-        public FoodEntryService(IFoodEntryRepository foodEntryRepository, IMapper mapper, IFoodEntryMealRepository foodEntryMealRepository)
+        public FoodEntryService(IFoodEntryRepository foodEntryRepository, IMapper mapper, IFoodEntryMealRepository foodEntryMealRepository, IUserRepository userRepository)
         {
             _foodEntryRepository = foodEntryRepository;
             _mapper = mapper;
             _foodEntryMealRepository = foodEntryMealRepository;
+            _userRepository = userRepository;
         }
 
         public int AddFoodEntry(FoodEntryDto foodEntryDto)
@@ -57,6 +59,11 @@ namespace BiteSizedDietPlan_BLL.ConcreteServices
             var foodEntryMeals = _foodEntryMealRepository.GetAll(x => x.FoodEntryId == foodEntryId);
 
             return foodEntryMeals.Select(x => _mapper.Map<FoodEntryMealDto>(x)).ToList();
+        }
+
+        public List<GeneralCalorieReportDto> GetGeneralCalorieReportData()
+        {
+            return _userRepository.GetAll().Select(x=>_mapper.Map<GeneralCalorieReportDto>(x)).ToList();
         }
 
         public void UpdateFoodEntryMeal(FoodEntryMealDto foodEntryMealDto)
