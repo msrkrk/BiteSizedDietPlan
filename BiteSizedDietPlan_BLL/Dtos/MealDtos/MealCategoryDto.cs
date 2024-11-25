@@ -12,5 +12,10 @@ namespace BiteSizedDietPlan_BLL.Dtos.MealDtos
         public string Name { get; set; }
 
         public List<MealDto> Meals { get; set; }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

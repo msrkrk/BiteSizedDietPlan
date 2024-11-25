@@ -10,6 +10,10 @@ namespace BiteSizedDietPlan_BLL.AbstractServices
 {
     public interface IMealService
     {
-      public List<MealDto> GetMeals();
+        public List<MealDto> GetMeals();
+
+        void AddMeal(MealDto meal);
+
+        List<MealCategoryDto> GetMealsCategory();
     }
 }

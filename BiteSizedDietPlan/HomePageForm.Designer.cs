@@ -33,6 +33,7 @@
             tableLayoutPanel2L = new TableLayoutPanel();
             dgvMeals = new DataGridView();
             tableLayoutPanelL3 = new TableLayoutPanel();
+            btnAddMeal = new Button();
             btnExit = new Button();
             btnMealTypeReport = new Button();
             btnComparisonReport = new Button();
@@ -119,11 +120,13 @@
             // 
             // tableLayoutPanelL3
             // 
-            tableLayoutPanelL3.ColumnCount = 4;
-            tableLayoutPanelL3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
+            tableLayoutPanelL3.ColumnCount = 5;
+            tableLayoutPanelL3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.33333F));
             tableLayoutPanelL3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333359F));
             tableLayoutPanelL3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333359F));
-            tableLayoutPanelL3.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 108F));
+            tableLayoutPanelL3.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 150F));
+            tableLayoutPanelL3.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 150F));
+            tableLayoutPanelL3.Controls.Add(btnAddMeal, 4, 0);
             tableLayoutPanelL3.Controls.Add(btnExit, 3, 0);
             tableLayoutPanelL3.Controls.Add(btnMealTypeReport, 2, 0);
             tableLayoutPanelL3.Controls.Add(btnComparisonReport, 1, 0);
@@ -137,6 +140,23 @@
             tableLayoutPanelL3.Size = new Size(1208, 31);
             tableLayoutPanelL3.TabIndex = 0;
             // 
+            // btnAddMeal
+            // 
+            btnAddMeal.BackColor = Color.IndianRed;
+            btnAddMeal.Dock = DockStyle.Fill;
+            btnAddMeal.FlatAppearance.BorderColor = Color.Black;
+            btnAddMeal.FlatStyle = FlatStyle.Flat;
+            btnAddMeal.Font = new Font("Calibri", 12F, FontStyle.Bold);
+            btnAddMeal.ForeColor = Color.Black;
+            btnAddMeal.Location = new Point(1058, 1);
+            btnAddMeal.Margin = new Padding(2, 1, 2, 1);
+            btnAddMeal.Name = "btnAddMeal";
+            btnAddMeal.Size = new Size(148, 29);
+            btnAddMeal.TabIndex = 5;
+            btnAddMeal.Text = "YEMEK EKLE";
+            btnAddMeal.UseVisualStyleBackColor = false;
+            btnAddMeal.Click += btnAddMeal_Click;
+            // 
             // btnExit
             // 
             btnExit.BackColor = Color.IndianRed;
@@ -145,10 +165,10 @@
             btnExit.FlatStyle = FlatStyle.Flat;
             btnExit.Font = new Font("Calibri", 12F, FontStyle.Bold);
             btnExit.ForeColor = Color.Black;
-            btnExit.Location = new Point(1100, 1);
+            btnExit.Location = new Point(908, 1);
             btnExit.Margin = new Padding(2, 1, 2, 1);
             btnExit.Name = "btnExit";
-            btnExit.Size = new Size(106, 29);
+            btnExit.Size = new Size(146, 29);
             btnExit.TabIndex = 4;
             btnExit.Text = "ÇIKIŞ YAP";
             btnExit.UseVisualStyleBackColor = false;
@@ -162,10 +182,10 @@
             btnMealTypeReport.FlatStyle = FlatStyle.Flat;
             btnMealTypeReport.Font = new Font("Calibri", 12F, FontStyle.Bold);
             btnMealTypeReport.ForeColor = Color.Black;
-            btnMealTypeReport.Location = new Point(734, 1);
+            btnMealTypeReport.Location = new Point(606, 1);
             btnMealTypeReport.Margin = new Padding(2, 1, 2, 1);
             btnMealTypeReport.Name = "btnMealTypeReport";
-            btnMealTypeReport.Size = new Size(362, 29);
+            btnMealTypeReport.Size = new Size(298, 29);
             btnMealTypeReport.TabIndex = 3;
             btnMealTypeReport.Text = "Yemek Çeşidi Raporunu Görüntüle!";
             btnMealTypeReport.UseVisualStyleBackColor = false;
@@ -179,10 +199,10 @@
             btnComparisonReport.FlatStyle = FlatStyle.Flat;
             btnComparisonReport.Font = new Font("Calibri", 12F, FontStyle.Bold);
             btnComparisonReport.ForeColor = Color.Black;
-            btnComparisonReport.Location = new Point(368, 1);
+            btnComparisonReport.Location = new Point(304, 1);
             btnComparisonReport.Margin = new Padding(2, 1, 2, 1);
             btnComparisonReport.Name = "btnComparisonReport";
-            btnComparisonReport.Size = new Size(362, 29);
+            btnComparisonReport.Size = new Size(298, 29);
             btnComparisonReport.TabIndex = 2;
             btnComparisonReport.Text = "Kıyas Raporunu Görüntüle!";
             btnComparisonReport.UseVisualStyleBackColor = false;
@@ -199,7 +219,7 @@
             btnEndofDayReport.Location = new Point(2, 1);
             btnEndofDayReport.Margin = new Padding(2, 1, 2, 1);
             btnEndofDayReport.Name = "btnEndofDayReport";
-            btnEndofDayReport.Size = new Size(362, 29);
+            btnEndofDayReport.Size = new Size(298, 29);
             btnEndofDayReport.TabIndex = 1;
             btnEndofDayReport.Text = "Gün Sonu Raporunu Görüntüle!";
             btnEndofDayReport.UseVisualStyleBackColor = false;
@@ -269,6 +289,8 @@
             // 
             // btnAddFoodEntryMeal
             // 
+            btnAddFoodEntryMeal.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnAddFoodEntryMeal.ForeColor = Color.IndianRed;
             btnAddFoodEntryMeal.Location = new Point(202, 1);
             btnAddFoodEntryMeal.Margin = new Padding(2, 1, 2, 1);
             btnAddFoodEntryMeal.Name = "btnAddFoodEntryMeal";
@@ -336,5 +358,6 @@
         private Button btnAddFoodEntryMeal;
         private FlowLayoutPanel flowLayoutPanel1;
         private ComboBox cmbMealType;
+        private Button btnAddMeal;
     }
 }

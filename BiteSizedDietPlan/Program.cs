@@ -34,7 +34,8 @@ namespace BiteSizedDietPlan
             var userService = new UserService(userGenericRepository, mapper, userRepository);
             var hashService = new HashService();
             var mealGenericRepository = new GenericRepository<Meal>(context);
-            var mealService = new MealService(mealGenericRepository, mapper);
+            var mealCategoryGenericRepository = new GenericRepository<MealCategory>(context);
+            var mealService = new MealService(mealGenericRepository, mapper,mealCategoryGenericRepository);
             var foodEntryRepository = new FoodEntryRepository(context);
             var foodEntryMealRepository = new FoodEntryMealRepository(context);
             var mealRepository = new MealRepository(context);

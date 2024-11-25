@@ -338,6 +338,12 @@ namespace BiteSizedDietPlan
             Form form = new MealConsumptionReportForm(_foodEntryService);
             form.ShowDialog();
         }
+
+        private void btnAddMeal_Click(object sender, EventArgs e)
+        {
+            Form form = new AddMealForm(_mapper,_mealService,_user,_foodEntryService);
+            form.ShowDialog();
+        }
     }
     class MealTypeComboBoxModel
     {
