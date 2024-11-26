@@ -46,37 +46,31 @@ namespace BiteSizedDietPlan
 
         private void LoadMeals()
         {
-            // FlowLayoutPanel'i temizle
             flpMeals.Controls.Clear();
 
-            // Yemek verilerini al
-            var meals = _mealService.GetMeals().ToList(); // Meals tablosundaki tüm veriler
+            var meals = _mealService.GetMeals().ToList(); 
 
-            // Her bir yemek için bir buton oluştur
             foreach (var meal in meals)
             {
                 Button mealButton = new Button();
-                mealButton.Text = meal.Name; // Butonun metni yemek adı
+                mealButton.Text = meal.Name; 
                 var btnSize = (int)(flpMeals.Width * 0.40);
-                mealButton.Size = new Size(btnSize, btnSize); // Butonun boyutunu ayarla
+                mealButton.Size = new Size(btnSize, btnSize); 
 
-                // Eğer yemek resmi varsa, resmini ekle
                 if (!string.IsNullOrEmpty(meal.ImagePath))
                 {
                     try
                     {
-                        mealButton.Image = Image.FromFile(meal.ImagePath); // Resmi yükle
-                        mealButton.ImageAlign = ContentAlignment.TopCenter; // Resmin konumunu ayarla
-                        mealButton.TextAlign = ContentAlignment.BottomCenter; // Metnin konumunu ayarla
+                        mealButton.Image = Image.FromFile(meal.ImagePath); 
+                        mealButton.ImageAlign = ContentAlignment.TopCenter;
+                        mealButton.TextAlign = ContentAlignment.BottomCenter; 
                     }
                     catch (Exception ex)
                     {
-                        // Resim yüklenemezse hata mesajı göster
                         MessageBox.Show("Resim yüklenemedi: " + ex.Message);
                     }
                 }
 
-                // Butona tıklandığında yapılacak işlemi belirle
                 mealButton.Click += (sender, e) =>
                 {
                     var foodEntryMeals = dgvMeals.DataSource as List<FoodEntryMealDto>;
@@ -92,7 +86,6 @@ namespace BiteSizedDietPlan
                     }
                     else
                     {
-                        // Eğer yoksa, yeni bir kayıt ekle
                         FoodEntryMealViewModel foodEntryMeal = new FoodEntryMealViewModel();
                         foodEntryMeal.FoodEntryId = _selectedFoodEntryId;
                         foodEntryMeal.MealId = meal.Id;
@@ -100,11 +93,9 @@ namespace BiteSizedDietPlan
                         _foodEntryService.AddFoodEntryMeal(_mapper.Map<FoodEntryMealDto>(foodEntryMeal));
                     }
 
-                    // Verileri yeniden yükle
                     LoadFoodEntryMeals();
                 };
 
-                // Butonu FlowLayoutPanel'e ekle
                 flpMeals.Controls.Add(mealButton);
             }
         }
@@ -161,8 +152,8 @@ namespace BiteSizedDietPlan
                 cmbMealType.Items.Add(new MealTypeComboBoxModel { Text = Helpers.GetEnumDescription(mealType), Value = mealType });
             }
 
-            cmbMealType.DisplayMember = "Text"; // Gösterilecek metin
-            cmbMealType.ValueMember = "Value";  // Arka planda tutulan değer
+            cmbMealType.DisplayMember = "Text"; 
+            cmbMealType.ValueMember = "Value"; 
         }
 
 
@@ -218,12 +209,10 @@ namespace BiteSizedDietPlan
             }
 
 
-            if (e.RowIndex >= 0) // Başlık hücresini kontrol etmek için
+            if (e.RowIndex >= 0) 
             {
-                // Tıklanan satır
                 DataGridViewRow selectedRow = dgvFoodEntry.Rows[e.RowIndex];
 
-                // Satırdan veri alma
                 _selectedFoodEntryId = (int)selectedRow.Cells["Id"].Value;
 
                 LoadFoodEntryMeals();

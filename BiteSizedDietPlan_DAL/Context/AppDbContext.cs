@@ -26,21 +26,19 @@ namespace BiteSizedDietPlan_DAL.Context
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<User>().HasIndex(u => u.Email).IsUnique(); // E-posta alanını benzersiz yapar.
+            modelBuilder.Entity<User>().HasIndex(u => u.Email).IsUnique(); 
 
-            // MealsCategories ile Meal arasında bire-çok ilişkiyi tanımlandı.
+
             modelBuilder.Entity<Meal>()
                 .HasOne(m => m.MealCategory)
                 .WithMany(c => c.Meals)
                 .HasForeignKey(m => m.MealCategoryId);
 
-            // User - FoodEntry: 1-M İlişki
             modelBuilder.Entity<FoodEntry>()
                 .HasOne(fe => fe.User)
                 .WithMany(u => u.FoodEntries)
                 .HasForeignKey(fe => fe.UserId);
 
-            // FoodEntry - Meal: M-N İlişki
             modelBuilder.Entity<FoodEntryMeal>()
                 .HasOne(fem => fem.FoodEntry)
                 .WithMany(fe => fe.FoodEntryMeals)
@@ -51,7 +49,6 @@ namespace BiteSizedDietPlan_DAL.Context
                 .WithMany(m => m.FoodEntryMeals)
                 .HasForeignKey(fem => fem.MealId);
 
-            //Seed data ile yemek kategorileri eklendi.
             modelBuilder.Entity<MealCategory>().HasData(
                 new MealCategory { Id = 1, Name = "Kahvaltılıklar", CreatedDate = new DateTime(2024, 11, 21) },
                 new MealCategory { Id = 2, Name = "Yemekler", CreatedDate = new DateTime(2024, 11, 21) },
@@ -60,7 +57,6 @@ namespace BiteSizedDietPlan_DAL.Context
                 new MealCategory { Id = 5, Name = "İçecekler", CreatedDate = new DateTime(2024, 11, 21) }
             );
 
-            //Seed data ile yemekler eklendi.
             modelBuilder.Entity<Meal>().HasData(
                 new Meal { Id = 1, Name = "Yulaf Ezmesi ve Meyve", Calorie = 250, MealCategoryId = 1, CreatedDate = new DateTime(2024, 11, 21) , ImagePath = "C:\\Users\\msrkrk\\source\\repos\\BiteSizedDietPlan\\BiteSizedDietPlan\\Resources\\1.jpg" },
                 new Meal { Id = 2, Name = "Peynirli Omlet", Calorie = 200, MealCategoryId = 1, CreatedDate = new DateTime(2024, 11, 21), ImagePath = "C:\\Users\\msrkrk\\source\\repos\\BiteSizedDietPlan\\BiteSizedDietPlan\\Resources\\1.jpg" },
