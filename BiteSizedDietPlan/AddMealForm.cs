@@ -2,6 +2,7 @@
 using BiteSizedDietPlan.Models.MealViewModels;
 using BiteSizedDietPlan.Models.UserViewModels;
 using BiteSizedDietPlan_BLL.AbstractServices;
+using BiteSizedDietPlan_BLL.ConcreteServices;
 using BiteSizedDietPlan_BLL.Dtos.MealDtos;
 using System;
 using System.Collections.Generic;
@@ -63,26 +64,63 @@ namespace BiteSizedDietPlan
 
         private void btnAddMeal_Click(object sender, EventArgs e)
         {
-            var category = (MealCategoryDto)cmbMealCategory.SelectedItem;
-            var meal = new MealViewModel()
+            try
             {
-                Name = txtMealName.Text,
-                Calorie = Convert.ToInt32(txtCalorie.Text),
-                MealCategoryId =category.Id,
-                ImagePath = SaveImage(_imagePath),
-            };
+              
+                var category = (MealCategoryDto)cmbMealCategory.SelectedItem;
+                if (category == null)
+                {
+                    MessageBox.Show("Lütfen bir kategori seçiniz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
 
-            if (meal.Name == null || meal.Calorie == null || meal.MealCategoryId == null || meal.ImagePath == null)
-            {
-                MessageBox.Show("Lütfen tüm alanları doldurunuz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            } 
-            else
-            {
-                _mealService.AddMeal(_mapper.Map<MealDto>(meal));
-                MessageBox.Show("Yemek başarı ile eklenmiştir.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                int calorie;
+                if (!int.TryParse(txtCalorie.Text, out calorie) || calorie < 0)
+                {
+                    MessageBox.Show("Lütfen geçerli bir kalori değeri giriniz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                string imagePath;
+                try
+                {
+                    imagePath = SaveImage(_imagePath);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Resim kaydedilirken bir hata oluştu: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                var meal = new MealViewModel()
+                {
+                    Name = txtMealName.Text,
+                    Calorie = calorie,
+                    MealCategoryId = category.Id,
+                    ImagePath = imagePath,
+                };
+
+                if (string.IsNullOrWhiteSpace(meal.Name) || string.IsNullOrWhiteSpace(meal.ImagePath))
+                {
+                    MessageBox.Show("Lütfen tüm alanları doldurunuz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                try
+                {
+                    _mealService.AddMeal(_mapper.Map<MealDto>(meal));
+                    MessageBox.Show("Yemek başarı ile eklenmiştir.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Yemek eklenirken bir hata oluştu: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Beklenmeyen bir hata oluştu: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -91,3 +129,5 @@ namespace BiteSizedDietPlan
         }
     }
 }
+
+

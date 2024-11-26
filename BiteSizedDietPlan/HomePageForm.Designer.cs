@@ -77,6 +77,8 @@
             // 
             flpMeals.AutoScroll = true;
             flpMeals.Dock = DockStyle.Fill;
+            flpMeals.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            flpMeals.ForeColor = Color.Black;
             flpMeals.Location = new Point(1218, 1);
             flpMeals.Margin = new Padding(2, 1, 2, 1);
             flpMeals.Name = "flpMeals";
