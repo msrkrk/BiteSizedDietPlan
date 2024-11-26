@@ -30,7 +30,7 @@ namespace BiteSizedDietPlan
             _foodEntryService = foodEntryService;
             _user = user;
             LoadData();
-            
+
         }
 
         private void dateTimePicker_ValueChanged(object sender, EventArgs e)
@@ -48,27 +48,27 @@ namespace BiteSizedDietPlan
             var userId = _user.Id;
 
 
-            lstvFoodEntries.Columns.Add("Yemek",200);
+            lstvFoodEntries.Columns.Add("Yemek", 200);
             lstvFoodEntries.Columns.Add("Porsiyon", 200);
             lstvFoodEntries.Columns.Add("Kalori", 200);
-           
-            
+
+
             var foodEntries = _foodEntryService.GetDailyFoodEntriesOfUser(userId, date);
 
-            foreach( var foodEntry in foodEntries)
+            foreach (var foodEntry in foodEntries)
             {
-                var group = new ListViewGroup(Helpers.GetEnumDescription(foodEntry.MealType),HorizontalAlignment.Left);
+                var group = new ListViewGroup(Helpers.GetEnumDescription(foodEntry.MealType), HorizontalAlignment.Left);
                 lstvFoodEntries.Groups.Add(group);
 
-                foreach(var meal in foodEntry.FoodEntryMeals)
+                foreach (var meal in foodEntry.FoodEntryMeals)
                 {
-                    var listViewItem = new ListViewItem(new[] {meal.Meal.Name,meal.Portion.ToString(),meal.Calorie.ToString()},group);
+                    var listViewItem = new ListViewItem(new[] { meal.Meal.Name, meal.Portion.ToString(), meal.Calorie.ToString() }, group);
 
                     lstvFoodEntries.Items.Add(listViewItem);
 
                 }
 
-                
+
 
             }
 
@@ -76,6 +76,11 @@ namespace BiteSizedDietPlan
             var totalCalorie = foodEntries.Sum(meal => meal.Calorie);
 
             txtTotalCalorie.Text = totalCalorie.ToString();
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+          this.Close();
         }
     }
 }

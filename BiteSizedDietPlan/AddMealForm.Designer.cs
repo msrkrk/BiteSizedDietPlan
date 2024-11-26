@@ -42,10 +42,11 @@
             // 
             // pictureBoxMeal
             // 
-            pictureBoxMeal.BackColor = SystemColors.ActiveBorder;
-            pictureBoxMeal.Location = new Point(22, 21);
+            pictureBoxMeal.BackColor = SystemColors.ControlLight;
+            pictureBoxMeal.Location = new Point(25, 27);
+            pictureBoxMeal.Margin = new Padding(3, 4, 3, 4);
             pictureBoxMeal.Name = "pictureBoxMeal";
-            pictureBoxMeal.Size = new Size(520, 256);
+            pictureBoxMeal.Size = new Size(383, 300);
             pictureBoxMeal.TabIndex = 0;
             pictureBoxMeal.TabStop = false;
             pictureBoxMeal.Click += pictureBoxMeal_Click;
@@ -53,82 +54,90 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Calibri", 12F);
-            label1.Location = new Point(22, 315);
+            label1.Font = new Font("Calibri", 12F, FontStyle.Bold);
+            label1.Location = new Point(25, 351);
             label1.Name = "label1";
-            label1.Size = new Size(80, 19);
+            label1.Size = new Size(84, 19);
             label1.TabIndex = 1;
             label1.Text = "Yemek Adı:";
             // 
             // txtMealName
             // 
             txtMealName.Font = new Font("Calibri", 12F);
-            txtMealName.Location = new Point(198, 315);
+            txtMealName.Location = new Point(175, 348);
+            txtMealName.Margin = new Padding(3, 4, 3, 4);
             txtMealName.Name = "txtMealName";
-            txtMealName.Size = new Size(100, 27);
+            txtMealName.Size = new Size(233, 27);
             txtMealName.TabIndex = 2;
             // 
             // txtCalorie
             // 
             txtCalorie.Font = new Font("Calibri", 12F);
-            txtCalorie.Location = new Point(198, 349);
+            txtCalorie.Location = new Point(175, 394);
+            txtCalorie.Margin = new Padding(3, 4, 3, 4);
             txtCalorie.Name = "txtCalorie";
-            txtCalorie.Size = new Size(100, 27);
+            txtCalorie.Size = new Size(233, 27);
             txtCalorie.TabIndex = 4;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Calibri", 12F);
-            label2.Location = new Point(22, 349);
+            label2.Font = new Font("Calibri", 12F, FontStyle.Bold);
+            label2.Location = new Point(25, 394);
             label2.Name = "label2";
-            label2.Size = new Size(127, 19);
+            label2.Size = new Size(135, 19);
             label2.TabIndex = 3;
             label2.Text = "Kalori (1porsiyon):";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Calibri", 12F);
-            label3.Location = new Point(22, 382);
+            label3.Font = new Font("Calibri", 12F, FontStyle.Bold);
+            label3.Location = new Point(25, 441);
             label3.Name = "label3";
-            label3.Size = new Size(124, 19);
+            label3.Size = new Size(129, 19);
             label3.TabIndex = 5;
             label3.Text = "Yemek Kategorisi:";
             // 
             // cmbMealCategory
             // 
             cmbMealCategory.FormattingEnabled = true;
-            cmbMealCategory.Location = new Point(198, 382);
+            cmbMealCategory.Location = new Point(175, 441);
+            cmbMealCategory.Margin = new Padding(3, 4, 3, 4);
             cmbMealCategory.Name = "cmbMealCategory";
-            cmbMealCategory.Size = new Size(121, 23);
+            cmbMealCategory.Size = new Size(233, 27);
             cmbMealCategory.TabIndex = 6;
             // 
             // btnAddMeal
             // 
-            btnAddMeal.Location = new Point(22, 425);
+            btnAddMeal.Font = new Font("Calibri", 14.25F, FontStyle.Bold);
+            btnAddMeal.Location = new Point(25, 494);
+            btnAddMeal.Margin = new Padding(3, 4, 3, 4);
             btnAddMeal.Name = "btnAddMeal";
-            btnAddMeal.Size = new Size(134, 43);
+            btnAddMeal.Size = new Size(182, 35);
             btnAddMeal.TabIndex = 7;
-            btnAddMeal.Text = "Ekle";
+            btnAddMeal.Text = "EKLE";
             btnAddMeal.UseVisualStyleBackColor = true;
             btnAddMeal.Click += btnAddMeal_Click;
             // 
             // btnCancel
             // 
-            btnCancel.Location = new Point(22, 496);
+            btnCancel.Font = new Font("Calibri", 14.25F, FontStyle.Bold);
+            btnCancel.Location = new Point(226, 494);
+            btnCancel.Margin = new Padding(3, 4, 3, 4);
             btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(134, 43);
+            btnCancel.Size = new Size(182, 35);
             btnCancel.TabIndex = 8;
-            btnCancel.Text = "İPTAL";
+            btnCancel.Text = "ÇIKIŞ";
             btnCancel.UseVisualStyleBackColor = true;
             btnCancel.Click += btnCancel_Click;
             // 
             // AddMealForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 19F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(578, 701);
+            BackColor = Color.LemonChiffon;
+            ClientSize = new Size(434, 557);
             Controls.Add(btnCancel);
             Controls.Add(btnAddMeal);
             Controls.Add(cmbMealCategory);
@@ -138,7 +147,11 @@
             Controls.Add(txtMealName);
             Controls.Add(label1);
             Controls.Add(pictureBoxMeal);
+            Font = new Font("Calibri", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(3, 4, 3, 4);
             Name = "AddMealForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "AddMealForm";
             ((System.ComponentModel.ISupportInitialize)pictureBoxMeal).EndInit();
             ResumeLayout(false);
