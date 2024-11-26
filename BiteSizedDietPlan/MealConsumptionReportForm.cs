@@ -30,14 +30,13 @@ namespace BiteSizedDietPlan
             dgvMealConsumptions.DataSource = datas;
         }
 
-
         private void btnChoose_Click(object sender, EventArgs e)
         {
             LoadData();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
+        private void btnExit_Click(object sender, EventArgs e)
+        { 
             this.Close();
         }
     }

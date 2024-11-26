@@ -38,6 +38,7 @@
             // lstvFoodEntries
             // 
             lstvFoodEntries.BackColor = SystemColors.ControlLight;
+            lstvFoodEntries.FullRowSelect = true;
             lstvFoodEntries.Location = new Point(29, 117);
             lstvFoodEntries.Margin = new Padding(3, 4, 3, 4);
             lstvFoodEntries.Name = "lstvFoodEntries";

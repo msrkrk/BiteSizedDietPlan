@@ -20,17 +20,12 @@ namespace BiteSizedDietPlan
         private string _imagePath;
         private readonly IMapper _mapper;
         private readonly IMealService _mealService;
-        private readonly IFoodEntryService _foodEntryService;
-        private readonly UserViewModel _userViewModel;
 
-
-        public AddMealForm(IMapper mapper, IMealService mealService, UserViewModel userViewModel, IFoodEntryService foodEntryService)
+        public AddMealForm(IMapper mapper, IMealService mealService)
         {
             InitializeComponent();
             _mapper = mapper;
             _mealService = mealService;
-            _userViewModel = userViewModel;
-            _foodEntryService = foodEntryService;
             ShowMealCategories();
         }
 
@@ -55,7 +50,6 @@ namespace BiteSizedDietPlan
             }
         }
 
-
         private string SaveImage(string sourcePath)
         {
             string projectPath = Directory.GetParent((AppDomain.CurrentDomain.BaseDirectory)).Parent.Parent.Parent.FullName;
@@ -78,14 +72,22 @@ namespace BiteSizedDietPlan
                 ImagePath = SaveImage(_imagePath),
             };
 
-            _mealService.AddMeal(_mapper.Map<MealDto>(meal));
+            if (meal.Name == null || meal.Calorie == null || meal.MealCategoryId == null || meal.ImagePath == null)
+            {
+                MessageBox.Show("Lütfen tüm alanları doldurunuz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            } 
+            else
+            {
+                _mealService.AddMeal(_mapper.Map<MealDto>(meal));
+                MessageBox.Show("Yemek başarı ile eklenmiştir.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            Form form = new HomePageForm(_mapper,_mealService,_userViewModel,_foodEntryService);
             this.Close();
-            form.ShowDialog();
         }
     }
 }

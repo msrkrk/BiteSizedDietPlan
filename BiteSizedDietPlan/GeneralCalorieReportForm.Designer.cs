@@ -34,12 +34,13 @@
             label1 = new Label();
             label2 = new Label();
             btnChooseDate = new Button();
-            button1 = new Button();
+            btnExit = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvGeneralCalorieReport).BeginInit();
             SuspendLayout();
             // 
             // dgvGeneralCalorieReport
             // 
+            dgvGeneralCalorieReport.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvGeneralCalorieReport.BackgroundColor = SystemColors.ControlLight;
             dgvGeneralCalorieReport.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvGeneralCalorieReport.Location = new Point(24, 172);
@@ -94,15 +95,16 @@
             btnChooseDate.UseVisualStyleBackColor = true;
             btnChooseDate.Click += btnChooseDate_Click;
             // 
-            // button1
+            // btnExit
             // 
-            button1.Font = new Font("Calibri", 12F, FontStyle.Bold);
-            button1.Location = new Point(738, 12);
-            button1.Name = "button1";
-            button1.Size = new Size(76, 28);
-            button1.TabIndex = 6;
-            button1.Text = "ÇIKIŞ";
-            button1.UseVisualStyleBackColor = true;
+            btnExit.Font = new Font("Calibri", 12F, FontStyle.Bold);
+            btnExit.Location = new Point(738, 12);
+            btnExit.Name = "btnExit";
+            btnExit.Size = new Size(76, 28);
+            btnExit.TabIndex = 6;
+            btnExit.Text = "ÇIKIŞ";
+            btnExit.UseVisualStyleBackColor = true;
+            btnExit.Click += btnExit_Click;
             // 
             // GeneralCalorieReportForm
             // 
@@ -110,7 +112,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.LemonChiffon;
             ClientSize = new Size(826, 505);
-            Controls.Add(button1);
+            Controls.Add(btnExit);
             Controls.Add(btnChooseDate);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -134,6 +136,6 @@
         private Label label1;
         private Label label2;
         private Button btnChooseDate;
-        private Button button1;
+        private Button btnExit;
     }
 }

@@ -34,16 +34,19 @@
             dateTimePickerEnd = new DateTimePicker();
             label2 = new Label();
             btnChoose = new Button();
-            button1 = new Button();
+            btnExit = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvMealConsumptions).BeginInit();
             SuspendLayout();
             // 
             // dgvMealConsumptions
             // 
+            dgvMealConsumptions.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvMealConsumptions.BackgroundColor = SystemColors.ControlLight;
             dgvMealConsumptions.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvMealConsumptions.Location = new Point(28, 178);
             dgvMealConsumptions.Name = "dgvMealConsumptions";
+            dgvMealConsumptions.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            dgvMealConsumptions.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvMealConsumptions.Size = new Size(708, 294);
             dgvMealConsumptions.TabIndex = 0;
             // 
@@ -95,16 +98,16 @@
             btnChoose.UseVisualStyleBackColor = true;
             btnChoose.Click += btnChoose_Click;
             // 
-            // button1
+            // btnExit
             // 
-            button1.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button1.Location = new Point(670, 12);
-            button1.Name = "button1";
-            button1.Size = new Size(82, 30);
-            button1.TabIndex = 6;
-            button1.Text = "ÇIKIŞ";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            btnExit.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnExit.Location = new Point(670, 12);
+            btnExit.Name = "btnExit";
+            btnExit.Size = new Size(82, 30);
+            btnExit.TabIndex = 6;
+            btnExit.Text = "ÇIKIŞ";
+            btnExit.UseVisualStyleBackColor = true;
+            btnExit.Click += btnExit_Click;
             // 
             // MealConsumptionReportForm
             // 
@@ -112,7 +115,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.LemonChiffon;
             ClientSize = new Size(764, 497);
-            Controls.Add(button1);
+            Controls.Add(btnExit);
             Controls.Add(btnChoose);
             Controls.Add(dateTimePickerEnd);
             Controls.Add(label2);
@@ -136,6 +139,6 @@
         private DateTimePicker dateTimePickerEnd;
         private Label label2;
         private Button btnChoose;
-        private Button button1;
+        private Button btnExit;
     }
 }

@@ -72,7 +72,6 @@ namespace BiteSizedDietPlan
 
             }
 
-
             var totalCalorie = foodEntries.Sum(meal => meal.Calorie);
 
             txtTotalCalorie.Text = totalCalorie.ToString();

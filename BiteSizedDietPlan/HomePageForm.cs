@@ -341,7 +341,7 @@ namespace BiteSizedDietPlan
 
         private void btnAddMeal_Click(object sender, EventArgs e)
         {
-            Form form = new AddMealForm(_mapper,_mealService,_user,_foodEntryService);
+            Form form = new AddMealForm(_mapper,_mealService);
             form.ShowDialog();
         }
     }
