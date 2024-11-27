@@ -285,7 +285,7 @@
             cmbMealType.Location = new Point(2, 1);
             cmbMealType.Margin = new Padding(2, 1, 2, 1);
             cmbMealType.Name = "cmbMealType";
-            cmbMealType.Size = new Size(196, 23);
+            cmbMealType.Size = new Size(311, 23);
             cmbMealType.TabIndex = 5;
             cmbMealType.Text = "Lütfen yemek girişi yapmak istediğiniz öğünü seçiniz.";
             // 
@@ -293,7 +293,7 @@
             // 
             btnAddFoodEntryMeal.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnAddFoodEntryMeal.ForeColor = Color.IndianRed;
-            btnAddFoodEntryMeal.Location = new Point(202, 1);
+            btnAddFoodEntryMeal.Location = new Point(317, 1);
             btnAddFoodEntryMeal.Margin = new Padding(2, 1, 2, 1);
             btnAddFoodEntryMeal.Name = "btnAddFoodEntryMeal";
             btnAddFoodEntryMeal.Size = new Size(81, 21);
